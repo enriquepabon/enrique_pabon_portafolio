@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enrique Pabón Ramírez | AI Solutions & Delivery Leader</title>
+  <style>
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --color-bg: #FAF9F7;
+      --color-bg-warm: #F5F3EF;
+      --color-bg-card: #FFFFFF;
+      --color-primary: #0D4F4F;
+      --color-primary-light: #1A6B6B;
+      --color-primary-dark: #083838;
+      --color-accent: #2A9D8F;
+      --color-accent-glow: rgba(42, 157, 143, 0.15);
+      --color-text: #2C3E3E;
+      --color-text-light: #5A6B6B;
+      --color-text-muted: #8A9A9A;
+      --color-border: #E0DDD8;
+      --color-border-light: #EBE9E5;
+      --shadow-sm: 0 2px 8px rgba(13, 79, 79, 0.06);
+      --shadow-md: 0 8px 24px rgba(13, 79, 79, 0.08);
+      --shadow-lg: 0 16px 48px rgba(13, 79, 79, 0.12);
+      --shadow-hover: 0 12px 32px rgba(13, 79, 79, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --transition-fast: 0.2s ease;
+      --transition-med: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-display: 'Palatino Linotype', 'Book Antiqua', Palatino, Georgia, serif;
+      --font-body: 'Segoe UI', 'Helvetica Neue', -apple-system, sans-serif;
+    }
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-accent);
+    }
+
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--color-primary-dark);
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      letter-spacing: -0.015em;
+    }
+
+    h3 {
+      font-size: clamp(1.25rem, 2vw, 1.5rem);
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    /* ===== LAYOUT ===== */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* ===== HEADER & NAVIGATION ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(250, 249, 247, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border-light);
+      transition: all var(--transition-med);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .logo span {
+      color: var(--color-accent);
+    }
+
+    nav {
+      display: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-light);
+      padding: 0.5rem 0;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition-med);
+    }
+
+    nav a:hover {
+      color: var(--color-primary);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      nav {
+        display: block;
+      }
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      padding-top: 140px;
+      padding-bottom: 6rem;
+      background: linear-gradient(180deg, var(--color-bg-warm) 0%, var(--color-bg) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 80%;
+      height: 150%;
+      background: radial-gradient(ellipse at center, var(--color-accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    .photo-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+      opacity: 0.15;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.15; }
+      50% { transform: scale(1.05); opacity: 0.25; }
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--color-bg-card);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text {
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      margin-bottom: 0.75rem;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .hero-title {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--color-primary);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--color-text-light);
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .hero-location svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      font-size: 0.875rem;
+      color: var(--color-text);
+      transition: all var(--transition-med);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-link:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+      color: var(--color-primary);
+    }
+
+    .contact-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-content {
+        grid-template-columns: 280px 1fr;
+        gap: 4rem;
+      }
+
+      .hero-text {
+        text-align: left;
+      }
+
+      .hero-contact {
+        justify-content: flex-start;
+      }
+
+      .photo-wrapper {
+        width: 260px;
+        height: 260px;
+      }
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-header h2 {
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about {
+      background: var(--color-bg-card);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--color-text);
+      text-align: center;
+    }
+
+    .about-text::first-letter {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      float: left;
+      line-height: 1;
+      padding-right: 0.75rem;
+      color: var(--color-primary);
+    }
+
+    /* ===== PROJECTS SECTION ===== */
+    .projects {
+      background: var(--color-bg-warm);
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .project-card {
+      background: var(--color-bg-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-med);
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .project-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-med);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-content {
+      padding: 1.75rem;
+    }
+
+    .project-content h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .project-role {
+      font-size: 0.875rem;
+      color: var(--color-accent);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .project-description {
+      font-size: 0.95rem;
+      color: var(--color-text-light);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .project-impact {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-impact li {
+      position: relative;
+      padding-left: 1.5rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--color-text);
+      line-height: 1.5;
+    }
+
+    .project-impact li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: var(--color-accent-glow);
+      color: var(--color-primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: var(--radius-lg);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 640px) {
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== SPEAKING & TRAINING SECTION ===== */
+    .speaking {
+      background: var(--color-bg-card);
+    }
+
+    .speaking-content {
+      display: grid;
+      gap: 2.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .speaking-card {
+      display: flex;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: var(--color-bg);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-light);
+      transition: all var(--transition-med);
+    }
+
+    .speaking-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .speaking-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .speaking-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+
+    .speaking-text h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .speaking-text p {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    .speaking-approach {
+      background: var(--color-bg-warm);
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+    }
+
+    .speaking-approach h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .approach-list {
+      list-style: none;
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .approach-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .approach-list .check-icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.15rem;
+    }
+
+    .approach-list .check-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: white;
+    }
+
+    .approach-list p {
+      margin: 0;
+      color: var(--color-text);
+    }
+
+    .speaking-image {
+      margin-top: 2rem;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .speaking-image img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) {
+      .speaking-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .speaking-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+      }
+
+      .approach-list {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+    /* ===== EXPERIENCE SECTION ===== */
+    .experience {
+      background: linear-gradient(180deg, var(--color-bg-warm) 0%, var(--color-bg) 100%);
+    }
+
+    .experience-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--color-primary), var(--color-accent));
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      background: var(--color-bg-card);
+      border: 3px solid var(--color-accent);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-year {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-role {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-primary-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-company {
+      color: var(--color-text-light);
+      font-size: 0.95rem;
+    }
+
+    .skills-section {
+      margin-top: 4rem;
+    }
+
+    .skills-section h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .skills-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--color-bg-card);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border-light);
+    }
+
+    .skill-category h4 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      font-family: var(--font-body);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--color-bg-warm);
+      color: var(--color-primary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-fast);
+    }
+
+    .chip:hover {
+      background: var(--color-accent-glow);
+      border-color: var(--color-accent);
+    }
+
+    @media (min-width: 768px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .skills-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* ===== CONTACT SECTION ===== */
+    .contact {
+      background: var(--color-primary-dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at 20% 80%, var(--color-accent-glow) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contact .section-header h2 {
+      color: white;
+    }
+
+    .contact .section-header h2::after {
+      background: linear-gradient(90deg, var(--color-accent), white);
+    }
+
+    .contact .section-header p {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .contact-content {
+      display: grid;
+      gap: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-info {
+      text-align: center;
+    }
+
+    .contact-name {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1rem;
+      transition: color var(--transition-fast);
+    }
+
+    .contact-item:hover {
+      color: white;
+    }
+
+    .contact-item svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      opacity: 0.7;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      background: var(--color-accent);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all var(--transition-med);
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(42, 157, 143, 0.3);
+      color: white;
+    }
+
+    .btn-primary svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .contact-form-wrapper {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 2.5rem;
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-form h3 {
+      color: white;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius-md);
+      color: white;
+      font-size: 1rem;
+      font-family: var(--font-body);
+      transition: all var(--transition-fast);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .form-group textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+
+    .form-submit .btn-primary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    @media (min-width: 768px) {
+      .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .contact-info {
+        text-align: left;
+      }
+
+      .contact-details {
+        align-items: flex-start;
+      }
+
+      .contact-item {
+        justify-content: flex-start;
+      }
+
+      .form-submit .btn-primary {
+        width: auto;
+      }
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--color-primary-dark);
+      color: rgba(255, 255, 255, 0.6);
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    /* ===== UTILITY CLASSES ===== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">Enrique<span>.</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#speaking">Speaking</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-photo">
+            <div class="photo-wrapper">
+              <!-- Replace the src below with your actual photo URL -->
+              <img src="https://via.placeholder.com/300x300" alt="Portrait of Enrique Pabón Ramírez, AI Solutions & Delivery Leader">
+            </div>
+          </div>
+          <div class="hero-text">
+            <h1>Enrique Pabón Ramírez</h1>
+            <p class="hero-title">Artificial Intelligence (AI) Solutions & Delivery Leader</p>
+            <p class="hero-subtitle">Industrial Engineer & MBA | AI Solutions, Data & Operations in Regulated Industries</p>
+            <p class="hero-location">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Bogotá, Colombia
+            </p>
+            <div class="hero-contact">
+              <a href="tel:+573142064795" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +57 314 206 4795
+              </a>
+              <a href="mailto:enriquepabonramirez@gmail.com" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                Email
+              </a>
+              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-header">
+          <h2>About Me</h2>
+        </div>
+        <div class="about-content">
+          <p class="about-text">
+            Bilingual Industrial Engineer with an MBA and 15+ years of experience leading transformation in highly regulated and operationally complex sectors, including agroindustry, pharmaceutical cannabis, glass manufacturing, and automotive. I design and deliver AI and data-enabled solutions—from scoping to implementation and scale—across end-to-end supply chains, operations, and commercial functions. My recent work focuses on AI-powered process optimization, computer vision, conversational agents, and no-code automation integrated with ERP and BI environments. I serve as the AI lead and internal trainer in my current company and have delivered multiple webinars on AI for business to corporate audiences in Mexico, helping non-technical teams adopt AI responsibly and confidently.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <div class="section-header">
+          <h2>Featured Projects</h2>
+          <p>Transforming operations through AI-powered solutions across regulated industries</p>
+        </div>
+        <div class="projects-grid">
+
+          <!-- PROJECT 1 -->
+          <article class="project-card">
+            <div class="project-image">
+              <!-- Ideal image: isometric illustration, modern flat design, green and blue palette, showing factories connected by data flows and dashboards. -->
+              <img src="https://via.placeholder.com/600x400" alt="Dashboard-style visualization of a smart AI system orchestrating flows between multiple palm oil extraction plants, with data charts and process lines">
+            </div>
+            <div class="project-content">
+              <h3>Smart-flow AI for Palm Oil Extraction Plants</h3>
+              <p class="project-role">AI Solutions Lead & Delivery Owner</p>
+              <p class="project-description">Design and implementation of an AI-based Smart-flow system that orchestrates fruit and process flows across multiple extraction plants, integrated with SAP/ERP and BI for real-time visibility.</p>
+              <ul class="project-impact">
+                <li>Designed and led an AI-driven smart-flow system to orchestrate process steps across multiple palm oil extraction plants</li>
+                <li>Integrated the solution with SAP/ERP and BI dashboards to provide real-time visibility on throughput, bottlenecks, and quality</li>
+                <li>Reduced manual coordination and improved planning accuracy and plant utilization</li>
+                <li>Collaborated with operations, IT, and leadership teams to move from pilot to scalable deployment</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">LLMs</span>
+                <span class="tag">ERP Integration</span>
+                <span class="tag">Process Optimization</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="project-card">
+            <div class="project-image">
+              <!-- Ideal image: schematic, technical, clean style showing a conveyor belt system with cameras and AI detection overlays. Industrial photography feel with blue and green accent lighting. -->
+              <img src="https://via.placeholder.com/600x400" alt="Close-up of palm fruit on a conveyor belt being scanned by computer-vision cameras with AI overlays highlighting quality categories">
+            </div>
+            <div class="project-content">
+              <h3>Computer Vision for Fruit Quality & Process Control</h3>
+              <p class="project-role">Product Owner for Computer Vision Initiative</p>
+              <p class="project-description">Computer vision models to classify palm fruit quality and detect under-processed bunches, connected to quality metrics and waste reduction.</p>
+              <ul class="project-impact">
+                <li>Spearheaded the development of computer vision models to classify palm fruit quality and detect under-processed bunches</li>
+                <li>Connected model outputs to quality dashboards and operational alerts for plant managers</li>
+                <li>Reduced reprocessing and waste while supporting more sustainable use of raw materials</li>
+                <li>Worked closely with field teams and plant operators to validate the solution in real-world conditions</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">Computer Vision</span>
+                <span class="tag">Quality Control</span>
+                <span class="tag">Sustainability</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3 -->
+          <article class="project-card">
+            <div class="project-image">
+              <!-- Ideal image: warm illustration, human-centered, focus on inclusion and accessible technology. Earthy tones with green accents. Show a farmer in a natural setting with smartphone. -->
+              <img src="https://via.placeholder.com/600x400" alt="Farmer using a smartphone with a WhatsApp chat open showing an AI assistant, with fields and crops in the background">
+            </div>
+            <div class="project-content">
+              <h3>AI-powered WhatsApp Advisory Agents for Farmers</h3>
+              <p class="project-role">Conversational AI Lead</p>
+              <p class="project-description">Design and deployment of AI agents on WhatsApp to support farmers and partners with guidance on deliveries, quality, and basic agronomic advice.</p>
+              <ul class="project-impact">
+                <li>Co-designed and deployed AI-powered WhatsApp agents to support farmers and agricultural partners</li>
+                <li>Provided real-time guidance on deliveries, quality standards, and basic agronomic recommendations</li>
+                <li>Improved responsiveness, transparency, and trust with rural stakeholders</li>
+                <li>Reduced dependency on manual call-center interactions and repetitive inquiries</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">Conversational AI</span>
+                <span class="tag">LLMs</span>
+                <span class="tag">AgriTech</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4 -->
+          <article class="project-card">
+            <div class="project-image">
+              <!-- Ideal image: diagrammatic, highly schematic, with nodes and connections. Clean white/light background with colorful icons representing different systems. Modern tech illustration style. -->
+              <img src="https://via.placeholder.com/600x400" alt="Diagram of interconnected apps and services orchestrated by a central no-code automation platform, with icons representing ERP, messaging, and analytics">
+            </div>
+            <div class="project-content">
+              <h3>No-code Automation with n8n for Operational Workflows</h3>
+              <p class="project-role">Automation Architect</p>
+              <p class="project-description">Implementation of no-code automations connecting ERP, logistics systems, messaging channels, and reporting tools to reduce manual work and errors.</p>
+              <ul class="project-impact">
+                <li>Implemented automated workflows in n8n to connect ERP data, logistics systems, messaging channels, and reporting tools</li>
+                <li>Reduced repetitive manual tasks and improved data consistency between central and field teams</li>
+                <li>Accelerated information flow for planning, execution, and reporting</li>
+                <li>Enabled non-technical users to benefit from automation without writing code</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">No-Code Automation</span>
+                <span class="tag">n8n</span>
+                <span class="tag">Workflow Design</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 5 -->
+          <article class="project-card">
+            <div class="project-image">
+              <!-- Ideal image: modern dashboard, clean layout, professional palette with deep teal and white. Show charts, graphs, and a sidebar with text representing AI insights. -->
+              <img src="https://via.placeholder.com/600x400" alt="Modern analytics dashboard with charts and a side panel showing AI-generated written insights and recommendations">
+            </div>
+            <div class="project-content">
+              <h3>AI-augmented BI Dashboards for Executive Decision-making</h3>
+              <p class="project-role">Analytics & Decision Support Lead</p>
+              <p class="project-description">Creation of interactive dashboards with AI-enhanced analysis for leadership and operational teams, combining key metrics and AI-generated narratives.</p>
+              <ul class="project-impact">
+                <li>Built interactive BI dashboards combining KPIs with AI-generated insights and narratives</li>
+                <li>Helped senior leaders and operational managers monitor performance and detect anomalies early</li>
+                <li>Supported data-informed decisions across supply chain, operations, and commercial functions</li>
+                <li>Encouraged broader data literacy and self-service analytics within the organization</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tag">Business Intelligence</span>
+                <span class="tag">Data Analytics</span>
+                <span class="tag">AI Insights</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SPEAKING & TRAINING SECTION -->
+    <section id="speaking" class="speaking">
+      <div class="container">
+        <div class="section-header">
+          <h2>AI Speaking & Training</h2>
+          <p>Empowering teams to adopt AI responsibly and confidently</p>
+        </div>
+        <div class="speaking-content">
+          <div class="speaking-grid">
+            <div class="speaking-card">
+              <div class="speaking-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+              </div>
+              <div class="speaking-text">
+                <h3>AI Lead & Internal Trainer</h3>
+                <p>Serving as the AI lead and internal trainer in my current company, driving AI adoption and capability building across teams.</p>
+              </div>
+            </div>
+            <div class="speaking-card">
+              <div class="speaking-icon">
+                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+              </div>
+              <div class="speaking-text">
+                <h3>Corporate Webinars</h3>
+                <p>Delivered 5+ webinars on AI in business to corporate audiences in Mexico, helping non-technical teams understand and leverage AI effectively.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="speaking-approach">
+            <h3>My Training Approach</h3>
+            <ul class="approach-list">
+              <li>
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <p>Translating complex AI concepts (LLMs, generative AI, automation) into practical business language that resonates with diverse audiences.</p>
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <p>Designing hands-on sessions that focus on responsible AI, governance, and data privacy awareness.</p>
+              </li>
+              <li>
+                <div class="check-icon">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
+                <p>Fostering curiosity, experimentation, and safe AI adoption across teams of all technical backgrounds.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="speaking-image">
+            <!-- Ideal image: Professional webinar/conference setting, warm lighting, speaker presenting to engaged business audience. Modern meeting room or virtual conference aesthetic. -->
+            <img src="https://via.placeholder.com/1200x400" alt="Professional webinar setting with a speaker presenting AI concepts to a business audience">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2>Experience & Impact</h2>
+          <p>15+ years transforming operations across regulated industries</p>
+        </div>
+        <div class="experience-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <span class="timeline-year">2022 – Present</span>
+              <p class="timeline-role">AI Solutions & Delivery Leader</p>
+              <p class="timeline-company">Agroindustry Sector</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">2019 – 2022</span>
+              <p class="timeline-role">Operations & Digital Transformation Manager</p>
+              <p class="timeline-company">Pharmaceutical Cannabis Industry</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">2015 – 2019</span>
+              <p class="timeline-role">Supply Chain & Operations Lead</p>
+              <p class="timeline-company">Glass Manufacturing</p>
+            </div>
+            <div class="timeline-item">
+              <span class="timeline-year">2010 – 2015</span>
+              <p class="timeline-role">Process Engineer & Continuous Improvement</p>
+              <p class="timeline-company">Automotive Industry</p>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <h3>Areas of Expertise</h3>
+            <div class="skills-grid">
+              <div class="skill-category">
+                <h4>AI & Data</h4>
+                <div class="chips">
+                  <span class="chip">LLMs & Generative AI</span>
+                  <span class="chip">Computer Vision</span>
+                  <span class="chip">Conversational AI</span>
+                  <span class="chip">Business Intelligence</span>
+                  <span class="chip">No-Code Automation</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Supply Chain & Operations</h4>
+                <div class="chips">
+                  <span class="chip">Process Optimization</span>
+                  <span class="chip">ERP Integration</span>
+                  <span class="chip">Logistics</span>
+                  <span class="chip">Quality Management</span>
+                  <span class="chip">Planning & Scheduling</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Regulated Industries</h4>
+                <div class="chips">
+                  <span class="chip">Agroindustry</span>
+                  <span class="chip">Pharmaceutical Cannabis</span>
+                  <span class="chip">Glass Manufacturing</span>
+                  <span class="chip">Automotive</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Responsible AI & Governance</h4>
+                <div class="chips">
+                  <span class="chip">AI Ethics</span>
+                  <span class="chip">Data Privacy</span>
+                  <span class="chip">Compliance</span>
+                  <span class="chip">Risk Management</span>
+                </div>
+              </div>
+              <div class="skill-category">
+                <h4>Training & Learning</h4>
+                <div class="chips">
+                  <span class="chip">Corporate Training</span>
+                  <span class="chip">Webinars</span>
+                  <span class="chip">Knowledge Transfer</span>
+                  <span class="chip">Team Building</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2>Let's Connect</h2>
+          <p>Open to discussing AI solutions, speaking opportunities, and collaboration</p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3 class="contact-name">Enrique Pabón Ramírez</h3>
+            <div class="contact-details">
+              <a href="mailto:enriquepabonramirez@gmail.com" class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                enriquepabonramirez@gmail.com
+              </a>
+              <a href="tel:+573142064795" class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                +57 314 206 4795
+              </a>
+              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                linkedin.com/in/enriquepabon
+              </a>
+            </div>
+            <!-- Replace # with the actual PDF link when available -->
+            <a href="#" class="btn-primary">
+              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+              Download CV (PDF)
+            </a>
+          </div>
+
+          <div class="contact-form-wrapper">
+            <form class="contact-form" action="#" method="post">
+              <h3>Send a Message</h3>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="How can I help you?" required></textarea>
+              </div>
+              <div class="form-submit">
+                <button type="submit" class="btn-primary">
+                  <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Enrique Pabón Ramírez. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header background change on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.style.boxShadow = '0 2px 20px rgba(13, 79, 79, 0.08)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

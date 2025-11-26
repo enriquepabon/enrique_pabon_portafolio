@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfolio of Enrique Pabón Ramírez - AI Solutions & Delivery Leader specialized in regulated industries and operations.">
+<title>Enrique Pabón Ramírez | AI Solutions & Delivery Leader</title>
+<style>
+/*
+========================================
+CSS VARIABLES & RESET
+========================================
+*/
+:root {
+/* Palette: Deep Teal / Emerald Green / Neutral */
+--primary-color: #0f4c5c; /* Deep Teal */
+--secondary-color: #10b981; /* Vibrant Emerald */
+--accent-color: #e0f2f1; /* Light Teal Background */
+--text-dark: #1f2937;
+--text-light: #4b5563;
+--bg-body: #f9fafb; /* Very light gray/off-white */
+--bg-card: #ffffff;
+--border-color: #e5e7eb;
+code
+Code
+/* Spacing & Layout */
+        --container-width: 1200px;
+        --section-padding: 5rem 1.5rem;
+        --border-radius: 12px;
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-dark);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* 
+    ========================================
+    TYPOGRAPHY
+    ========================================
+    */
+    h1, h2, h3, h4 {
+        font-weight: 700;
+        color: var(--primary-color);
+        line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+    h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 2rem; text-align: center; }
+    h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--text-dark); }
+    
+    p { margin-bottom: 1rem; color: var(--text-light); }
+    
+    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    
+    ul { list-style: none; }
+
+    /* 
+    ========================================
+    UTILITY CLASSES
+    ========================================
+    */
+    .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid var(--primary-color);
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: transparent;
+        color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .section-header {
+        max-width: 800px;
+        margin: 0 auto 3rem auto;
+        text-align: center;
+    }
+
+    /* 
+    ========================================
+    NAVIGATION
+    ========================================
+    */
+    nav {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border-color);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-weight: 800;
+        font-size: 1.2rem;
+        color: var(--primary-color);
+        letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        font-weight: 500;
+        color: var(--text-dark);
+        font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+        color: var(--secondary-color);
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* 
+    ========================================
+    HERO SECTION
+    ========================================
+    */
+    #hero {
+        padding: 6rem 0;
+        display: flex;
+        align-items: center;
+        min-height: 90vh;
+    }
+
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-image {
+        order: 2;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-img-container {
+        width: 320px;
+        height: 320px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 8px solid var(--accent-color);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .hero-img-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .hero-tagline {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--secondary-color);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-contact-info {
+        display: flex;
+        gap: 1.5rem;
+        margin: 2rem 0;
+        font-size: 0.95rem;
+        flex-wrap: wrap;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* 
+    ========================================
+    ABOUT SECTION
+    ========================================
+    */
+    #about {
+        background-color: var(--bg-card);
+        padding: var(--section-padding);
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+    }
+
+    .timeline-item {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 2px solid var(--border-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 6px;
+        width: 10px;
+        height: 10px;
+        background: var(--secondary-color);
+        border-radius: 50%;
+    }
+
+    .timeline-role {
+        font-weight: 700;
+        color: var(--text-dark);
+    }
+
+    .timeline-meta {
+        font-size: 0.85rem;
+        color: var(--text-light);
+    }
+
+    .tags-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .tag {
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .tag.highlight {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* 
+    ========================================
+    PROJECTS SECTION
+    ========================================
+    */
+    #projects {
+        padding: var(--section-padding);
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+    }
+
+    .project-card {
+        background: var(--bg-card);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: var(--transition);
+    }
+
+    .project-card:hover .project-image img {
+        transform: scale(1.05);
+    }
+
+    .project-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-role {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: var(--secondary-color);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-desc {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .impact-list {
+        margin-top: auto;
+        padding-left: 1.2rem;
+        list-style-type: disc;
+        margin-bottom: 1.5rem;
+    }
+
+    .impact-list li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+    }
+
+    .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .card-tag {
+        font-size: 0.75rem;
+        background: #f3f4f6;
+        color: var(--text-dark);
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+    }
+
+    /* 
+    ========================================
+    SPEAKING & TRAINING SECTION
+    ========================================
+    */
+    #speaking {
+        background-color: var(--primary-color);
+        color: white;
+        padding: var(--section-padding);
+    }
+
+    #speaking h2, #speaking h3, #speaking p {
+        color: white;
+    }
+
+    #speaking p {
+        opacity: 0.9;
+    }
+
+    .speaking-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .speaking-bullets li {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .icon-box {
+        background: rgba(255, 255, 255, 0.2);
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        flex-shrink: 0;
+    }
+
+    .speaking-img {
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .speaking-img img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* 
+    ========================================
+    CONTACT SECTION
+    ========================================
+    */
+    #contact {
+        padding: var(--section-padding);
+    }
+
+    .contact-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+        background: var(--bg-card);
+        padding: 2.5rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px var(--accent-color);
+    }
+
+    .contact-links {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .contact-link-item {
+        text-align: center;
+    }
+
+    /* 
+    ========================================
+    FOOTER
+    ========================================
+    */
+    footer {
+        background-color: var(--text-dark);
+        color: #9ca3af;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    /* 
+    ========================================
+    RESPONSIVE MEDIA QUERIES
+    ========================================
+    */
+    @media (max-width: 768px) {
+        .hero-grid, .about-grid, .speaking-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero-content { order: 2; }
+        .hero-image { order: 1; }
+        
+        .hero-contact-info {
+            justify-content: center;
+        }
+
+        .nav-links {
+            display: none; /* Simple hiding for mobile, JS toggle implied */
+        }
+        
+        .menu-toggle { display: block; }
+
+        .timeline-item {
+            text-align: left;
+        }
+
+        .speaking-bullets li {
+            text-align: left;
+        }
+    }
+
+    /* Tablet Grid */
+    @media (min-width: 700px) {
+        .projects-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Desktop Grid */
+    @media (min-width: 1024px) {
+        .projects-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+</style>
+</head>
+<body>
+code
+Code
+<!-- NAVIGATION -->
+<nav>
+    <div class="container nav-container">
+        <a href="#" class="logo">Enrique Pabón Ramírez</a>
+        <div class="menu-toggle">☰</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Portfolio</a>
+            <a href="#speaking">Speaking</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<header id="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <p class="hero-tagline">Industrial Engineer & MBA</p>
+                <h1>AI Solutions & Delivery Leader</h1>
+                <p class="subtitle">Driving transformation in Regulated Industries through AI, Data, and Operations.</p>
+                
+                <div class="hero-contact-info">
+                    <div class="contact-item">
+                        <span>📍 Bogotá, Colombia</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📞 +57 314 206 4795</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧 enriquepabonramirez@gmail.com</span>
+                    </div>
+                </div>
+
+                <a href="#projects" class="btn">View Projects</a>
+                <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" class="btn btn-outline" style="margin-left: 10px;">LinkedIn</a>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-img-container">
+                    <img src="https://via.placeholder.com/300x300" alt="Portrait of Enrique Pabón Ramírez, AI Solutions & Delivery Leader">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ABOUT / EXPERIENCE SECTION -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+            <!-- Professional Summary -->
+            <div class="about-text">
+                <h2>Professional Profile</h2>
+                <p>
+                    Bilingual Industrial Engineer with an MBA and 15+ years of experience leading transformation in highly regulated and operationally complex sectors, including agroindustry, pharmaceutical cannabis, glass manufacturing, and automotive. 
+                </p>
+                <p>
+                    I design and deliver AI and data-enabled solutions—from scoping to implementation and scale—across end-to-end supply chains, operations, and commercial functions. My recent work focuses on AI-powered process optimization, computer vision, conversational agents, and no-code automation integrated with ERP and BI environments.
+                </p>
+                <p>
+                    I serve as the AI lead and internal trainer in my current company and have delivered multiple webinars on AI for business to corporate audiences in Mexico, helping non-technical teams adopt AI responsibly and confidently.
+                </p>
+
+                <h3 style="margin-top: 2rem;">Areas of Expertise</h3>
+                <div class="tags-container">
+                    <span class="tag highlight">AI & Data Strategy</span>
+                    <span class="tag highlight">Supply Chain Ops</span>
+                    <span class="tag highlight">Regulated Industries</span>
+                    <span class="tag">Process Optimization</span>
+                    <span class="tag">Computer Vision</span>
+                    <span class="tag">LLMs & GenAI</span>
+                    <span class="tag">Governance & Ethics</span>
+                    <span class="tag">Training & Leadership</span>
+                </div>
+            </div>
+
+            <!-- Experience Timeline -->
+            <div class="about-experience">
+                <h3>Experience Timeline</h3>
+                <div style="margin-top: 1.5rem;">
+                    <div class="timeline-item">
+                        <div class="timeline-role">Current Company</div>
+                        <div class="timeline-meta">AI Lead & Internal Trainer</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-role">Pharmaceutical Cannabis Sector</div>
+                        <div class="timeline-meta">Operations & Transformation Lead</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-role">Glass Manufacturing</div>
+                        <div class="timeline-meta">Supply Chain Manager</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-role">Automotive Industry</div>
+                        <div class="timeline-meta">Process Engineer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header">
+            <h2>Highlighted Projects</h2>
+            <p>Delivering impact through AI, automation, and data visualization.</p>
+        </div>
+
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Ideal image: isometric illustration, modern flat design, green and blue palette, showing factories connected by data flows and dashboards. -->
+                    <img src="https://via.placeholder.com/600x400" alt="Dashboard-style visualization of a smart AI system orchestrating flows between multiple palm oil extraction plants">
+                </div>
+                <div class="project-content">
+                    <div class="project-role">AI Solutions Lead</div>
+                    <h3>Smart-flow AI for Palm Oil Extraction</h3>
+                    <p class="project-desc">AI-based Smart-flow system orchestrating fruit and process flows across multiple extraction plants, integrated with SAP/ERP.</p>
+                    <ul class="impact-list">
+                        <li>Designed and led an AI-driven smart-flow system.</li>
+                        <li>Integrated with SAP/ERP and BI for real-time visibility.</li>
+                        <li>Reduced manual coordination and improved planning accuracy.</li>
+                        <li>Collaborated with ops and IT for scalable deployment.</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span class="card-tag">Process Optimization</span>
+                        <span class="card-tag">ERP Integration</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Ideal image: Schematic close-up, technical view of palm fruit on conveyor with bounding boxes indicating quality/defects. -->
+                    <img src="https://via.placeholder.com/600x400" alt="Close-up of palm fruit on a conveyor belt being scanned by computer-vision cameras with AI overlays">
+                </div>
+                <div class="project-content">
+                    <div class="project-role">Product Owner</div>
+                    <h3>Computer Vision for Fruit Quality</h3>
+                    <p class="project-desc">CV models to classify palm fruit quality and detect under-processed bunches, connected to quality metrics.</p>
+                    <ul class="impact-list">
+                        <li>Developed CV models to classify fruit quality.</li>
+                        <li>Connected outputs to quality dashboards and alerts.</li>
+                        <li>Reduced reprocessing and waste significantly.</li>
+                        <li>Validated solution with field teams and operators.</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span class="card-tag">Computer Vision</span>
+                        <span class="card-tag">Quality Control</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Ideal image: Warm illustration, human-centered, farmer holding phone with chat interface, crops in background. -->
+                    <img src="https://via.placeholder.com/600x400" alt="Farmer using a smartphone with a WhatsApp chat open showing an AI assistant">
+                </div>
+                <div class="project-content">
+                    <div class="project-role">Conversational AI Lead</div>
+                    <h3>WhatsApp Advisory Agents for Farmers</h3>
+                    <p class="project-desc">Deployment of AI agents on WhatsApp to support farmers with guidance on deliveries, quality, and agronomic advice.</p>
+                    <ul class="impact-list">
+                        <li>Co-designed and deployed AI-powered WhatsApp agents.</li>
+                        <li>Provided real-time guidance on deliveries and quality.</li>
+                        <li>Improved responsiveness and trust with rural stakeholders.</li>
+                        <li>Reduced dependency on manual call-center interactions.</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span class="card-tag">Conversational AI</span>
+                        <span class="card-tag">LLMs</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Ideal image: Diagrammatic, highly schematic, nodes and connections, n8n style workflow. -->
+                    <img src="https://via.placeholder.com/600x400" alt="Diagram of interconnected apps and services orchestrated by a central no-code automation platform">
+                </div>
+                <div class="project-content">
+                    <div class="project-role">Automation Architect</div>
+                    <h3>No-code Automation with n8n</h3>
+                    <p class="project-desc">Connecting ERP, logistics systems, messaging channels, and reporting tools to reduce manual work and errors.</p>
+                    <ul class="impact-list">
+                        <li>Implemented automated workflows in n8n.</li>
+                        <li>Reduced repetitive manual tasks and data errors.</li>
+                        <li>Accelerated info flow for planning and execution.</li>
+                        <li>Enabled non-technical users to benefit from automation.</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span class="card-tag">No-Code</span>
+                        <span class="card-tag">n8n</span>
+                        <span class="card-tag">Automation</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Ideal image: Modern analytics dashboard, clean layout, professional palette, showing AI insights sidebar. -->
+                    <img src="https://via.placeholder.com/600x400" alt="Modern analytics dashboard with charts and a side panel showing AI-generated written insights">
+                </div>
+                <div class="project-content">
+                    <div class="project-role">Analytics Lead</div>
+                    <h3>AI-augmented BI Dashboards</h3>
+                    <p class="project-desc">Interactive dashboards with AI-enhanced analysis for leadership, combining key metrics and AI-generated narratives.</p>
+                    <ul class="impact-list">
+                        <li>Built BI dashboards combining KPIs with AI insights.</li>
+                        <li>Helped leaders monitor performance and detect anomalies.</li>
+                        <li>Supported data-informed decisions across supply chain.</li>
+                        <li>Encouraged broader data literacy within the org.</li>
+                    </ul>
+                    <div class="card-tags">
+                        <span class="card-tag">BI</span>
+                        <span class="card-tag">Data Analytics</span>
+                        <span class="card-tag">Strategy</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- SPEAKING & TRAINING SECTION -->
+<section id="speaking">
+    <div class="container">
+        <div class="section-header">
+            <h2>AI Speaking & Training</h2>
+            <p>Bridging the gap between complex technology and business strategy.</p>
+        </div>
+        
+        <div class="speaking-grid">
+            <div>
+                <h3 style="color:white; margin-bottom: 1rem;">Internal & Corporate Training</h3>
+                <p style="margin-bottom: 2rem;">
+                    As the AI lead in my current company, I drive internal adoption strategies. I have also delivered 5+ webinars on AI for business to corporate audiences in Mexico, specifically designed for non-technical teams.
+                </p>
+                
+                <ul class="speaking-bullets">
+                    <li>
+                        <div class="icon-box">🎤</div>
+                        <div>
+                            <strong>Translation:</strong> Translating complex AI concepts (LLMs, generative AI, automation) into practical business language.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-box">⚖️</div>
+                        <div>
+                            <strong>Responsibility:</strong> Designing hands-on sessions that focus on responsible AI, governance, and data privacy awareness.
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-box">🚀</div>
+                        <div>
+                            <strong>Adoption:</strong> Fostering curiosity, experimentation, and safe AI adoption across operational teams.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="speaking-img">
+                <img src="https://via.placeholder.com/600x400" alt="Professional webinar setting with a speaker presenting AI concepts to a business audience">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <div class="container">
+        <div class="section-header">
+            <h2>Let's Connect</h2>
+            <p>Open for opportunities in AI Strategy, Operations, and Digital Transformation.</p>
+        </div>
+
+        <div class="contact-wrapper">
+            <form class="contact-form" action="#" method="POST" onsubmit="event.preventDefault(); alert('This is a demo form.');">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="How can we work together?"></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+
+            <div class="contact-links">
+                <div class="contact-link-item">
+                    <a href="mailto:enriquepabonramirez@gmail.com" style="color: var(--primary-color); font-weight: 600;">enriquepabonramirez@gmail.com</a>
+                </div>
+                <div class="contact-link-item">
+                    <a href="#" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">Download CV (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <p>&copy; 2023 Enrique Pabón Ramírez. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 0.5rem;">AI Solutions & Delivery Leader | Industrial Engineer & MBA</p>
+    </div>
+</footer>
+
+<!-- Minimal Scripts for Interactivity -->
+<script>
+    // Mobile Menu Toggle Logic
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks.style.display === 'flex') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '60px';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'white';
+            navLinks.style.padding = '1rem';
+            navLinks.style.boxShadow = '0 5px 5px rgba(0,0,0,0.1)';
+        }
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if(window.innerWidth <= 768) {
+                document.querySelector('.nav-links').style.display = 'none';
+            }
+        });
+    });
+</script>
+</body>
+</html>
