@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,9 @@
     }
 
     /* ===== RESET & BASE ===== */
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -73,7 +76,12 @@
     }
 
     /* ===== TYPOGRAPHY ===== */
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       font-family: var(--font-display);
       font-weight: 600;
       line-height: 1.25;
@@ -235,8 +243,17 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.15; }
-      50% { transform: scale(1.05); opacity: 0.25; }
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.15;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 0.25;
+      }
     }
 
     .photo-wrapper img {
@@ -331,6 +348,7 @@
         opacity: 0;
         transform: translateY(20px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -1014,6 +1032,281 @@
       margin: 0;
     }
 
+    /* ===== LANGUAGE TOGGLE ===== */
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-left: 1rem;
+    }
+
+    .language-toggle:hover {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+
+    .lang-icon {
+      font-size: 1.2rem;
+    }
+
+    /* ===== CHATBOT STYLES ===== */
+    #chatbot-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: var(--transition-med);
+      z-index: 1000;
+    }
+
+    #chatbot-button:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-hover);
+    }
+
+    #chatbot-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 380px;
+      height: 550px;
+      background: var(--color-bg-card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      display: none;
+      flex-direction: column;
+      z-index: 1001;
+      overflow: hidden;
+      border: 1px solid var(--color-border-light);
+    }
+
+    #chatbot-container.active {
+      display: flex;
+    }
+
+    .chatbot-header {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chatbot-header h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: white;
+      font-family: var(--font-body);
+      font-weight: 600;
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: var(--transition-fast);
+    }
+
+    .chatbot-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: var(--color-bg-warm);
+    }
+
+    .message {
+      display: flex;
+      gap: 0.75rem;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    .message.user {
+      flex-direction: row-reverse;
+    }
+
+    .message-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .message.bot .message-avatar {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+      color: white;
+    }
+
+    .message.user .message-avatar {
+      background: var(--color-accent-glow);
+      color: var(--color-primary);
+    }
+
+    .message-content {
+      max-width: 75%;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-md);
+      line-height: 1.5;
+      font-size: 0.9rem;
+    }
+
+    .message.bot .message-content {
+      background: var(--color-bg-card);
+      color: var(--color-text);
+      border: 1px solid var(--color-border-light);
+      border-bottom-left-radius: 4px;
+    }
+
+    .message.user .message-content {
+      background: var(--color-primary);
+      color: white;
+      border-bottom-right-radius: 4px;
+    }
+
+    .typing-indicator {
+      display: flex;
+      gap: 0.3rem;
+      padding: 0.75rem 1rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border-light);
+      border-radius: var(--radius-md);
+      width: fit-content;
+    }
+
+    .typing-indicator span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      animation: typing 1.4s infinite;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+
+      0%,
+      60%,
+      100% {
+        opacity: 0.3;
+        transform: translateY(0);
+      }
+
+      30% {
+        opacity: 1;
+        transform: translateY(-10px);
+      }
+    }
+
+    .chatbot-input-area {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border-light);
+      display: flex;
+      gap: 0.75rem;
+      background: var(--color-bg-card);
+    }
+
+    .chatbot-input-area input {
+      flex: 1;
+      padding: 0.75rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      background: var(--color-bg-warm);
+      color: var(--color-text);
+    }
+
+    .chatbot-input-area input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background: var(--color-bg-card);
+    }
+
+    .chatbot-send {
+      background: var(--color-accent);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-med);
+    }
+
+    .chatbot-send:hover {
+      background: var(--color-primary);
+      transform: scale(1.05);
+    }
+
+    .chatbot-send:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      #chatbot-container {
+        width: calc(100vw - 2rem);
+        height: calc(100vh - 2rem);
+        bottom: 1rem;
+        right: 1rem;
+      }
+
+      #chatbot-button {
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+
     /* ===== UTILITY CLASSES ===== */
     .sr-only {
       position: absolute;
@@ -1028,18 +1321,29 @@
     }
   </style>
 </head>
+
 <body>
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
       <a href="#" class="logo">Enrique<span>.</span></a>
       <nav aria-label="Main navigation">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#speaking">Speaking</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul style="display: flex; align-items: center;">
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#speaking" data-i18n="nav.speaking">Speaking</a></li>
+          <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="portafolio_gemeni_3.0.html"
+              style="color: var(--color-primary); font-weight: 700; border: 1px solid var(--color-primary); padding: 0.25rem 0.75rem; border-radius: 4px;"
+              data-i18n="nav.design1">Diseño
+              1</a></li>
+          <li>
+            <button id="language-toggle" class="language-toggle">
+              <span class="lang-icon">🌐</span>
+              <span id="current-lang">EN</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
@@ -1053,29 +1357,45 @@
           <div class="hero-photo">
             <div class="photo-wrapper">
               <!-- Replace the src below with your actual photo URL -->
-              <img src="https://via.placeholder.com/300x300" alt="Portrait of Enrique Pabón Ramírez, AI Solutions & Delivery Leader">
+              <img src="Photos/profile_enrique.png"
+                alt="Portrait of Enrique Pabón Ramírez, AI Solutions & Delivery Leader">
             </div>
           </div>
           <div class="hero-text">
-            <h1>Enrique Pabón Ramírez</h1>
-            <p class="hero-title">Artificial Intelligence (AI) Solutions & Delivery Leader</p>
-            <p class="hero-subtitle">Industrial Engineer & MBA | AI Solutions, Data & Operations in Regulated Industries</p>
+            <h1 data-i18n="hero.name">Enrique Pabón Ramírez</h1>
+            <p class="hero-title" data-i18n="hero.role">Artificial Intelligence (AI) Solutions & Delivery Leader</p>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Industrial Engineer & MBA | AI Solutions, Data &
+              Operations in Regulated Industries
+            </p>
             <p class="hero-location">
-              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Bogotá, Colombia
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg>
+              <span data-i18n="hero.location">Bogotá, Colombia</span>
             </p>
             <div class="hero-contact">
               <a href="tel:+573142064795" class="contact-link">
-                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
                 +57 314 206 4795
               </a>
               <a href="mailto:enriquepabonramirez@gmail.com" class="contact-link">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                Email
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+                <span data-i18n="hero.ctaEmail">Email</span>
               </a>
-              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer" class="contact-link">
-                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-                LinkedIn
+              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer"
+                class="contact-link">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
+                <span data-i18n="hero.ctaLinkedIn">LinkedIn</span>
               </a>
             </div>
           </div>
@@ -1087,11 +1407,18 @@
     <section id="about" class="about">
       <div class="container">
         <div class="section-header">
-          <h2>About Me</h2>
+          <h2 data-i18n="about.title">About Me</h2>
         </div>
         <div class="about-content">
-          <p class="about-text">
-            Bilingual Industrial Engineer with an MBA and 15+ years of experience leading transformation in highly regulated and operationally complex sectors, including agroindustry, pharmaceutical cannabis, glass manufacturing, and automotive. I design and deliver AI and data-enabled solutions—from scoping to implementation and scale—across end-to-end supply chains, operations, and commercial functions. My recent work focuses on AI-powered process optimization, computer vision, conversational agents, and no-code automation integrated with ERP and BI environments. I serve as the AI lead and internal trainer in my current company and have delivered multiple webinars on AI for business to corporate audiences in Mexico, helping non-technical teams adopt AI responsibly and confidently.
+          <p class="about-text" data-i18n="about.text">
+            Bilingual Industrial Engineer with an MBA and 15+ years of experience leading transformation in highly
+            regulated and operationally complex sectors, including agroindustry, pharmaceutical cannabis, glass
+            manufacturing, and automotive. I design and deliver AI and data-enabled solutions—from scoping to
+            implementation and scale—across end-to-end supply chains, operations, and commercial functions. My recent
+            work focuses on AI-powered process optimization, computer vision, conversational agents, and no-code
+            automation integrated with ERP and BI environments. I serve as the AI lead and internal trainer in my
+            current company and have delivered multiple webinars on AI for business to corporate audiences in Mexico,
+            helping non-technical teams adopt AI responsibly and confidently.
           </p>
         </div>
       </div>
@@ -1101,8 +1428,9 @@
     <section id="projects" class="projects">
       <div class="container">
         <div class="section-header">
-          <h2>Featured Projects</h2>
-          <p>Transforming operations through AI-powered solutions across regulated industries</p>
+          <h2 data-i18n="projects.title">Featured Projects</h2>
+          <p data-i18n="projects.subtitle">Transforming operations through AI-powered solutions across regulated
+            industries</p>
         </div>
         <div class="projects-grid">
 
@@ -1110,22 +1438,33 @@
           <article class="project-card">
             <div class="project-image">
               <!-- Ideal image: isometric illustration, modern flat design, green and blue palette, showing factories connected by data flows and dashboards. -->
-              <img src="https://via.placeholder.com/600x400" alt="Dashboard-style visualization of a smart AI system orchestrating flows between multiple palm oil extraction plants, with data charts and process lines">
+              <img src="Photos/project_smart_flow.png"
+                alt="Dashboard-style visualization of a smart AI system orchestrating flows between multiple palm oil extraction plants, with data charts and process lines">
             </div>
             <div class="project-content">
-              <h3>Smart-flow AI for Palm Oil Extraction Plants</h3>
-              <p class="project-role">AI Solutions Lead & Delivery Owner</p>
-              <p class="project-description">Design and implementation of an AI-based Smart-flow system that orchestrates fruit and process flows across multiple extraction plants, integrated with SAP/ERP and BI for real-time visibility.</p>
+              <h3 data-i18n="projects.p1.title">Smart-flow AI for Palm Oil Extraction Plants</h3>
+              <p class="project-role" data-i18n="projects.p1.role">AI Solutions Lead & Delivery Owner</p>
+              <p class="project-description" data-i18n="projects.p1.desc">Design and implementation of an AI-based
+                Smart-flow system that
+                orchestrates fruit and process flows across multiple extraction plants, integrated with SAP/ERP and BI
+                for real-time visibility.</p>
               <ul class="project-impact">
-                <li>Designed and led an AI-driven smart-flow system to orchestrate process steps across multiple palm oil extraction plants</li>
-                <li>Integrated the solution with SAP/ERP and BI dashboards to provide real-time visibility on throughput, bottlenecks, and quality</li>
-                <li>Reduced manual coordination and improved planning accuracy and plant utilization</li>
-                <li>Collaborated with operations, IT, and leadership teams to move from pilot to scalable deployment</li>
+                <li data-i18n="projects.p1.impact1">Designed and led an AI-driven smart-flow system to orchestrate
+                  process steps across multiple palm
+                  oil extraction plants</li>
+                <li data-i18n="projects.p1.impact2">Integrated the solution with SAP/ERP and BI dashboards to provide
+                  real-time visibility on
+                  throughput, bottlenecks, and quality</li>
+                <li data-i18n="projects.p1.impact3">Reduced manual coordination and improved planning accuracy and plant
+                  utilization</li>
+                <li data-i18n="projects.p1.impact4">Collaborated with operations, IT, and leadership teams to move from
+                  pilot to scalable deployment
+                </li>
               </ul>
               <div class="project-tags">
-                <span class="tag">LLMs</span>
-                <span class="tag">ERP Integration</span>
-                <span class="tag">Process Optimization</span>
+                <span class="tag" data-i18n="projects.p1.tag1">LLMs</span>
+                <span class="tag" data-i18n="projects.p1.tag2">ERP Integration</span>
+                <span class="tag" data-i18n="projects.p1.tag3">Process Optimization</span>
               </div>
             </div>
           </article>
@@ -1134,22 +1473,31 @@
           <article class="project-card">
             <div class="project-image">
               <!-- Ideal image: schematic, technical, clean style showing a conveyor belt system with cameras and AI detection overlays. Industrial photography feel with blue and green accent lighting. -->
-              <img src="https://via.placeholder.com/600x400" alt="Close-up of palm fruit on a conveyor belt being scanned by computer-vision cameras with AI overlays highlighting quality categories">
+              <img src="Photos/project_computer_vision.png"
+                alt="Close-up of palm fruit on a conveyor belt being scanned by computer-vision cameras with AI overlays highlighting quality categories">
             </div>
             <div class="project-content">
-              <h3>Computer Vision for Fruit Quality & Process Control</h3>
-              <p class="project-role">Product Owner for Computer Vision Initiative</p>
-              <p class="project-description">Computer vision models to classify palm fruit quality and detect under-processed bunches, connected to quality metrics and waste reduction.</p>
+              <h3 data-i18n="projects.p2.title">Computer Vision for Fruit Quality & Process Control</h3>
+              <p class="project-role" data-i18n="projects.p2.role">Product Owner for Computer Vision Initiative</p>
+              <p class="project-description" data-i18n="projects.p2.desc">Computer vision models to classify palm fruit
+                quality and detect
+                under-processed bunches, connected to quality metrics and waste reduction.</p>
               <ul class="project-impact">
-                <li>Spearheaded the development of computer vision models to classify palm fruit quality and detect under-processed bunches</li>
-                <li>Connected model outputs to quality dashboards and operational alerts for plant managers</li>
-                <li>Reduced reprocessing and waste while supporting more sustainable use of raw materials</li>
-                <li>Worked closely with field teams and plant operators to validate the solution in real-world conditions</li>
+                <li data-i18n="projects.p2.impact1">Spearheaded the development of computer vision models to classify
+                  palm fruit quality and detect
+                  under-processed bunches</li>
+                <li data-i18n="projects.p2.impact2">Connected model outputs to quality dashboards and operational alerts
+                  for plant managers</li>
+                <li data-i18n="projects.p2.impact3">Reduced reprocessing and waste while supporting more sustainable use
+                  of raw materials</li>
+                <li data-i18n="projects.p2.impact4">Worked closely with field teams and plant operators to validate the
+                  solution in real-world
+                  conditions</li>
               </ul>
               <div class="project-tags">
-                <span class="tag">Computer Vision</span>
-                <span class="tag">Quality Control</span>
-                <span class="tag">Sustainability</span>
+                <span class="tag" data-i18n="projects.p2.tag1">Computer Vision</span>
+                <span class="tag" data-i18n="projects.p2.tag2">Quality Control</span>
+                <span class="tag" data-i18n="projects.p2.tag3">Sustainability</span>
               </div>
             </div>
           </article>
@@ -1158,22 +1506,31 @@
           <article class="project-card">
             <div class="project-image">
               <!-- Ideal image: warm illustration, human-centered, focus on inclusion and accessible technology. Earthy tones with green accents. Show a farmer in a natural setting with smartphone. -->
-              <img src="https://via.placeholder.com/600x400" alt="Farmer using a smartphone with a WhatsApp chat open showing an AI assistant, with fields and crops in the background">
+              <img src="Photos/project_whatsapp_agents.png"
+                alt="Farmer using a smartphone with a WhatsApp chat open showing an AI assistant, with fields and crops in the background">
             </div>
             <div class="project-content">
-              <h3>AI-powered WhatsApp Advisory Agents for Farmers</h3>
-              <p class="project-role">Conversational AI Lead</p>
-              <p class="project-description">Design and deployment of AI agents on WhatsApp to support farmers and partners with guidance on deliveries, quality, and basic agronomic advice.</p>
+              <h3 data-i18n="projects.p3.title">AI-powered WhatsApp Advisory Agents for Farmers</h3>
+              <p class="project-role" data-i18n="projects.p3.role">Conversational AI Lead</p>
+              <p class="project-description" data-i18n="projects.p3.desc">Design and deployment of AI agents on WhatsApp
+                to support farmers and
+                partners with guidance on deliveries, quality, and basic agronomic advice.</p>
               <ul class="project-impact">
-                <li>Co-designed and deployed AI-powered WhatsApp agents to support farmers and agricultural partners</li>
-                <li>Provided real-time guidance on deliveries, quality standards, and basic agronomic recommendations</li>
-                <li>Improved responsiveness, transparency, and trust with rural stakeholders</li>
-                <li>Reduced dependency on manual call-center interactions and repetitive inquiries</li>
+                <li data-i18n="projects.p3.impact1">Co-designed and deployed AI-powered WhatsApp agents to support
+                  farmers and agricultural partners
+                </li>
+                <li data-i18n="projects.p3.impact2">Provided real-time guidance on deliveries, quality standards, and
+                  basic agronomic recommendations
+                </li>
+                <li data-i18n="projects.p3.impact3">Improved responsiveness, transparency, and trust with rural
+                  stakeholders</li>
+                <li data-i18n="projects.p3.impact4">Reduced dependency on manual call-center interactions and repetitive
+                  inquiries</li>
               </ul>
               <div class="project-tags">
-                <span class="tag">Conversational AI</span>
-                <span class="tag">LLMs</span>
-                <span class="tag">AgriTech</span>
+                <span class="tag" data-i18n="projects.p3.tag1">Conversational AI</span>
+                <span class="tag" data-i18n="projects.p3.tag2">LLMs</span>
+                <span class="tag" data-i18n="projects.p3.tag3">AgriTech</span>
               </div>
             </div>
           </article>
@@ -1182,22 +1539,30 @@
           <article class="project-card">
             <div class="project-image">
               <!-- Ideal image: diagrammatic, highly schematic, with nodes and connections. Clean white/light background with colorful icons representing different systems. Modern tech illustration style. -->
-              <img src="https://via.placeholder.com/600x400" alt="Diagram of interconnected apps and services orchestrated by a central no-code automation platform, with icons representing ERP, messaging, and analytics">
+              <img src="Photos/project_n8n_automation.png"
+                alt="Diagram of interconnected apps and services orchestrated by a central no-code automation platform, with icons representing ERP, messaging, and analytics">
             </div>
             <div class="project-content">
-              <h3>No-code Automation with n8n for Operational Workflows</h3>
-              <p class="project-role">Automation Architect</p>
-              <p class="project-description">Implementation of no-code automations connecting ERP, logistics systems, messaging channels, and reporting tools to reduce manual work and errors.</p>
+              <h3 data-i18n="projects.p4.title">No-code Automation with n8n for Operational Workflows</h3>
+              <p class="project-role" data-i18n="projects.p4.role">Automation Architect</p>
+              <p class="project-description" data-i18n="projects.p4.desc">Implementation of no-code automations
+                connecting ERP, logistics systems,
+                messaging channels, and reporting tools to reduce manual work and errors.</p>
               <ul class="project-impact">
-                <li>Implemented automated workflows in n8n to connect ERP data, logistics systems, messaging channels, and reporting tools</li>
-                <li>Reduced repetitive manual tasks and improved data consistency between central and field teams</li>
-                <li>Accelerated information flow for planning, execution, and reporting</li>
-                <li>Enabled non-technical users to benefit from automation without writing code</li>
+                <li data-i18n="projects.p4.impact1">Implemented automated workflows in n8n to connect ERP data,
+                  logistics systems, messaging channels,
+                  and reporting tools</li>
+                <li data-i18n="projects.p4.impact2">Reduced repetitive manual tasks and improved data consistency
+                  between central and field teams</li>
+                <li data-i18n="projects.p4.impact3">Accelerated information flow for planning, execution, and reporting
+                </li>
+                <li data-i18n="projects.p4.impact4">Enabled non-technical users to benefit from automation without
+                  writing code</li>
               </ul>
               <div class="project-tags">
-                <span class="tag">No-Code Automation</span>
-                <span class="tag">n8n</span>
-                <span class="tag">Workflow Design</span>
+                <span class="tag" data-i18n="projects.p4.tag1">No-Code Automation</span>
+                <span class="tag" data-i18n="projects.p4.tag2">n8n</span>
+                <span class="tag" data-i18n="projects.p4.tag3">Workflow Design</span>
               </div>
             </div>
           </article>
@@ -1206,22 +1571,29 @@
           <article class="project-card">
             <div class="project-image">
               <!-- Ideal image: modern dashboard, clean layout, professional palette with deep teal and white. Show charts, graphs, and a sidebar with text representing AI insights. -->
-              <img src="https://via.placeholder.com/600x400" alt="Modern analytics dashboard with charts and a side panel showing AI-generated written insights and recommendations">
+              <img src="Photos/project_bi_dashboards.png"
+                alt="Modern analytics dashboard with charts and a side panel showing AI-generated written insights and recommendations">
             </div>
             <div class="project-content">
-              <h3>AI-augmented BI Dashboards for Executive Decision-making</h3>
-              <p class="project-role">Analytics & Decision Support Lead</p>
-              <p class="project-description">Creation of interactive dashboards with AI-enhanced analysis for leadership and operational teams, combining key metrics and AI-generated narratives.</p>
+              <h3 data-i18n="projects.p5.title">AI-augmented BI Dashboards for Executive Decision-making</h3>
+              <p class="project-role" data-i18n="projects.p5.role">Analytics & Decision Support Lead</p>
+              <p class="project-description" data-i18n="projects.p5.desc">Creation of interactive dashboards with
+                AI-enhanced analysis for leadership
+                and operational teams, combining key metrics and AI-generated narratives.</p>
               <ul class="project-impact">
-                <li>Built interactive BI dashboards combining KPIs with AI-generated insights and narratives</li>
-                <li>Helped senior leaders and operational managers monitor performance and detect anomalies early</li>
-                <li>Supported data-informed decisions across supply chain, operations, and commercial functions</li>
-                <li>Encouraged broader data literacy and self-service analytics within the organization</li>
+                <li data-i18n="projects.p5.impact1">Built interactive BI dashboards combining KPIs with AI-generated
+                  insights and narratives</li>
+                <li data-i18n="projects.p5.impact2">Helped senior leaders and operational managers monitor performance
+                  and detect anomalies early</li>
+                <li data-i18n="projects.p5.impact3">Supported data-informed decisions across supply chain, operations,
+                  and commercial functions</li>
+                <li data-i18n="projects.p5.impact4">Encouraged broader data literacy and self-service analytics within
+                  the organization</li>
               </ul>
               <div class="project-tags">
-                <span class="tag">Business Intelligence</span>
-                <span class="tag">Data Analytics</span>
-                <span class="tag">AI Insights</span>
+                <span class="tag" data-i18n="projects.p5.tag1">Business Intelligence</span>
+                <span class="tag" data-i18n="projects.p5.tag2">Data Analytics</span>
+                <span class="tag" data-i18n="projects.p5.tag3">Strategy Support</span>
               </div>
             </div>
           </article>
@@ -1234,58 +1606,88 @@
     <section id="speaking" class="speaking">
       <div class="container">
         <div class="section-header">
-          <h2>AI Speaking & Training</h2>
-          <p>Empowering teams to adopt AI responsibly and confidently</p>
+          <h2 data-i18n="speaking.title">AI Speaking & Training</h2>
+          <p data-i18n="speaking.subtitle">Empowering teams to adopt AI responsibly and confidently</p>
         </div>
         <div class="speaking-content">
           <div class="speaking-grid">
             <div class="speaking-card">
               <div class="speaking-icon">
-                <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z" />
+                </svg>
               </div>
               <div class="speaking-text">
-                <h3>AI Lead & Internal Trainer</h3>
-                <p>Serving as the AI lead and internal trainer in my current company, driving AI adoption and capability building across teams.</p>
+                <h3 data-i18n="speaking.card1.title">AI Lead & Internal Trainer</h3>
+                <p data-i18n="speaking.card1.desc">Serving as the AI lead and internal trainer in my current company,
+                  driving AI adoption and capability
+                  building across teams.</p>
               </div>
             </div>
             <div class="speaking-card">
               <div class="speaking-icon">
-                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+                </svg>
               </div>
               <div class="speaking-text">
-                <h3>Corporate Webinars</h3>
-                <p>Delivered 5+ webinars on AI in business to corporate audiences in Mexico, helping non-technical teams understand and leverage AI effectively.</p>
+                <h3 data-i18n="speaking.card2.title">Corporate Webinars</h3>
+                <p data-i18n="speaking.card2.desc">Delivered 5+ webinars on AI in business to corporate audiences in
+                  Mexico, helping non-technical teams
+                  understand and leverage AI effectively.</p>
               </div>
             </div>
           </div>
 
           <div class="speaking-approach">
-            <h3>My Training Approach</h3>
+            <h3 data-i18n="speaking.approach.title">My Training Approach</h3>
             <ul class="approach-list">
               <li>
                 <div class="check-icon">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
                 </div>
-                <p>Translating complex AI concepts (LLMs, generative AI, automation) into practical business language that resonates with diverse audiences.</p>
+                <div class="approach-text">
+                  <strong data-i18n="speaking.approach.bullet1.title">Translation:</strong> <span
+                    data-i18n="speaking.approach.bullet1.desc">Translating complex AI concepts (LLMs, generative AI,
+                    automation) into practical business language.</span>
+                </div>
               </li>
               <li>
                 <div class="check-icon">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
                 </div>
-                <p>Designing hands-on sessions that focus on responsible AI, governance, and data privacy awareness.</p>
+                <div class="approach-text">
+                  <strong data-i18n="speaking.approach.bullet2.title">Responsibility:</strong> <span
+                    data-i18n="speaking.approach.bullet2.desc">Designing hands-on sessions that focus on responsible
+                    AI, governance, and data privacy awareness.</span>
+                </div>
               </li>
               <li>
                 <div class="check-icon">
-                  <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                  <svg viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                  </svg>
                 </div>
-                <p>Fostering curiosity, experimentation, and safe AI adoption across teams of all technical backgrounds.</p>
+                <div class="approach-text">
+                  <strong data-i18n="speaking.approach.bullet3.title">Adoption:</strong> <span
+                    data-i18n="speaking.approach.bullet3.desc">Fostering curiosity, experimentation, and safe AI
+                    adoption
+                    across operational teams.</span>
+                </div>
               </li>
             </ul>
           </div>
 
           <div class="speaking-image">
             <!-- Ideal image: Professional webinar/conference setting, warm lighting, speaker presenting to engaged business audience. Modern meeting room or virtual conference aesthetic. -->
-            <img src="https://via.placeholder.com/1200x400" alt="Professional webinar setting with a speaker presenting AI concepts to a business audience">
+            <img src="Photos/speaking_training.png"
+              alt="Professional webinar setting with a speaker presenting AI concepts to a business audience">
           </div>
         </div>
       </div>
@@ -1295,81 +1697,81 @@
     <section id="experience" class="experience">
       <div class="container">
         <div class="section-header">
-          <h2>Experience & Impact</h2>
-          <p>15+ years transforming operations across regulated industries</p>
+          <h2 data-i18n="experience.title">Experience & Impact</h2>
+          <p data-i18n="experience.subtitle">15+ years transforming operations across regulated industries</p>
         </div>
         <div class="experience-content">
           <div class="timeline">
             <div class="timeline-item">
-              <span class="timeline-year">2022 – Present</span>
-              <p class="timeline-role">AI Solutions & Delivery Leader</p>
-              <p class="timeline-company">Agroindustry Sector</p>
+              <span class="timeline-year" data-i18n="experience.timeline.current.years">2022 – Present</span>
+              <p class="timeline-role" data-i18n="experience.timeline.current.role">AI Solutions & Delivery Leader</p>
+              <p class="timeline-company" data-i18n="experience.timeline.current.company">Agroindustry Sector</p>
             </div>
             <div class="timeline-item">
-              <span class="timeline-year">2019 – 2022</span>
-              <p class="timeline-role">Operations & Digital Transformation Manager</p>
-              <p class="timeline-company">Pharmaceutical Cannabis Industry</p>
+              <span class="timeline-year" data-i18n="experience.timeline.cannabis.years">2019 – 2022</span>
+              <p class="timeline-role" data-i18n="experience.timeline.cannabis.role">Operations & Digital Transformation Manager</p>
+              <p class="timeline-company" data-i18n="experience.timeline.cannabis.company">Pharmaceutical Cannabis Industry</p>
             </div>
             <div class="timeline-item">
-              <span class="timeline-year">2015 – 2019</span>
-              <p class="timeline-role">Supply Chain & Operations Lead</p>
-              <p class="timeline-company">Glass Manufacturing</p>
+              <span class="timeline-year" data-i18n="experience.timeline.glass.years">2015 – 2019</span>
+              <p class="timeline-role" data-i18n="experience.timeline.glass.role">Supply Chain & Operations Lead</p>
+              <p class="timeline-company" data-i18n="experience.timeline.glass.company">Glass Manufacturing</p>
             </div>
             <div class="timeline-item">
-              <span class="timeline-year">2010 – 2015</span>
-              <p class="timeline-role">Process Engineer & Continuous Improvement</p>
-              <p class="timeline-company">Automotive Industry</p>
+              <span class="timeline-year" data-i18n="experience.timeline.auto.years">2010 – 2015</span>
+              <p class="timeline-role" data-i18n="experience.timeline.auto.role">Process Engineer & Continuous Improvement</p>
+              <p class="timeline-company" data-i18n="experience.timeline.auto.company">Automotive Industry</p>
             </div>
           </div>
 
           <div class="skills-section">
-            <h3>Areas of Expertise</h3>
+            <h3 data-i18n="experience.skills.title">Areas of Expertise</h3>
             <div class="skills-grid">
               <div class="skill-category">
-                <h4>AI & Data</h4>
+                <h4 data-i18n="experience.skills.categories.aiData.title">AI & Data</h4>
                 <div class="chips">
-                  <span class="chip">LLMs & Generative AI</span>
-                  <span class="chip">Computer Vision</span>
-                  <span class="chip">Conversational AI</span>
-                  <span class="chip">Business Intelligence</span>
-                  <span class="chip">No-Code Automation</span>
+                  <span class="chip" data-i18n="experience.skills.categories.aiData.llms">LLMs & Generative AI</span>
+                  <span class="chip" data-i18n="experience.skills.categories.aiData.vision">Computer Vision</span>
+                  <span class="chip" data-i18n="experience.skills.categories.aiData.conversational">Conversational AI</span>
+                  <span class="chip" data-i18n="experience.skills.categories.aiData.bi">Business Intelligence</span>
+                  <span class="chip" data-i18n="experience.skills.categories.aiData.noCode">No-Code Automation</span>
                 </div>
               </div>
               <div class="skill-category">
-                <h4>Supply Chain & Operations</h4>
+                <h4 data-i18n="experience.skills.categories.supplyOps.title">Supply Chain & Operations</h4>
                 <div class="chips">
-                  <span class="chip">Process Optimization</span>
-                  <span class="chip">ERP Integration</span>
-                  <span class="chip">Logistics</span>
-                  <span class="chip">Quality Management</span>
-                  <span class="chip">Planning & Scheduling</span>
+                  <span class="chip" data-i18n="experience.skills.categories.supplyOps.process">Process Optimization</span>
+                  <span class="chip" data-i18n="experience.skills.categories.supplyOps.erp">ERP Integration</span>
+                  <span class="chip" data-i18n="experience.skills.categories.supplyOps.logistics">Logistics</span>
+                  <span class="chip" data-i18n="experience.skills.categories.supplyOps.quality">Quality Management</span>
+                  <span class="chip" data-i18n="experience.skills.categories.supplyOps.planning">Planning & Scheduling</span>
                 </div>
               </div>
               <div class="skill-category">
-                <h4>Regulated Industries</h4>
+                <h4 data-i18n="experience.skills.categories.regulated.title">Regulated Industries</h4>
                 <div class="chips">
-                  <span class="chip">Agroindustry</span>
-                  <span class="chip">Pharmaceutical Cannabis</span>
-                  <span class="chip">Glass Manufacturing</span>
-                  <span class="chip">Automotive</span>
+                  <span class="chip" data-i18n="experience.skills.categories.regulated.agroindustry">Agroindustry</span>
+                  <span class="chip" data-i18n="experience.skills.categories.regulated.cannabis">Pharmaceutical Cannabis</span>
+                  <span class="chip" data-i18n="experience.skills.categories.regulated.glass">Glass Manufacturing</span>
+                  <span class="chip" data-i18n="experience.skills.categories.regulated.auto">Automotive</span>
                 </div>
               </div>
               <div class="skill-category">
-                <h4>Responsible AI & Governance</h4>
+                <h4 data-i18n="experience.skills.categories.governance.title">Responsible AI & Governance</h4>
                 <div class="chips">
-                  <span class="chip">AI Ethics</span>
-                  <span class="chip">Data Privacy</span>
-                  <span class="chip">Compliance</span>
-                  <span class="chip">Risk Management</span>
+                  <span class="chip" data-i18n="experience.skills.categories.governance.ethics">AI Ethics</span>
+                  <span class="chip" data-i18n="experience.skills.categories.governance.privacy">Data Privacy</span>
+                  <span class="chip" data-i18n="experience.skills.categories.governance.compliance">Compliance</span>
+                  <span class="chip" data-i18n="experience.skills.categories.governance.risk">Risk Management</span>
                 </div>
               </div>
               <div class="skill-category">
-                <h4>Training & Learning</h4>
+                <h4 data-i18n="experience.skills.categories.training.title">Training & Learning</h4>
                 <div class="chips">
-                  <span class="chip">Corporate Training</span>
-                  <span class="chip">Webinars</span>
-                  <span class="chip">Knowledge Transfer</span>
-                  <span class="chip">Team Building</span>
+                  <span class="chip" data-i18n="experience.skills.categories.training.corporate">Corporate Training</span>
+                  <span class="chip" data-i18n="experience.skills.categories.training.webinars">Webinars</span>
+                  <span class="chip" data-i18n="experience.skills.categories.training.transfer">Knowledge Transfer</span>
+                  <span class="chip" data-i18n="experience.skills.categories.training.team">Team Building</span>
                 </div>
               </div>
             </div>
@@ -1382,51 +1784,68 @@
     <section id="contact" class="contact">
       <div class="container">
         <div class="section-header">
-          <h2>Let's Connect</h2>
-          <p>Open to discussing AI solutions, speaking opportunities, and collaboration</p>
+          <h2 data-i18n="contact.title">Let's Connect</h2>
+          <p data-i18n="contact.subtitle">Open to discussing AI solutions, speaking opportunities, and collaboration</p>
         </div>
         <div class="contact-content">
           <div class="contact-info">
             <h3 class="contact-name">Enrique Pabón Ramírez</h3>
             <div class="contact-details">
               <a href="mailto:enriquepabonramirez@gmail.com" class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
                 enriquepabonramirez@gmail.com
               </a>
               <a href="tel:+573142064795" class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                </svg>
                 +57 314 206 4795
               </a>
-              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer" class="contact-item">
-                <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+              <a href="https://www.linkedin.com/in/enriquepabon" target="_blank" rel="noopener noreferrer"
+                class="contact-item">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                </svg>
                 linkedin.com/in/enriquepabon
               </a>
             </div>
             <!-- Replace # with the actual PDF link when available -->
-            <a href="#" class="btn-primary">
-              <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            <a href="CV Enrique Pabón 2025 ENG.pdf" download class="btn-primary" data-i18n="contact.downloadCV">
+              <svg viewBox="0 0 24 24">
+                <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+              </svg>
               Download CV (PDF)
             </a>
           </div>
 
           <div class="contact-form-wrapper">
             <form class="contact-form" action="#" method="post">
-              <h3>Send a Message</h3>
+              <h3 data-i18n="contact.form.title">Send a Message</h3>
               <div class="form-group">
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" placeholder="John Doe" required>
+                <label for="name" data-i18n="contact.form.name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required
+                  data-i18n-placeholder="contact.form.namePlaceholder">
               </div>
               <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                <label for="email" data-i18n="contact.form.email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required
+                  data-i18n-placeholder="contact.form.emailPlaceholder">
               </div>
               <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" placeholder="How can I help you?" required></textarea>
+                <label for="message" data-i18n="contact.form.message">Message</label>
+                <textarea id="message" name="message" placeholder="How can I help you?" required
+                  data-i18n-placeholder="contact.form.messagePlaceholder"></textarea>
               </div>
               <div class="form-submit">
-                <button type="submit" class="btn-primary">
-                  <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                <button type="submit" class="btn-primary" data-i18n="contact.form.submit">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                  </svg>
                   Send Message
                 </button>
               </div>
@@ -1440,11 +1859,468 @@
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>&copy; 2024 Enrique Pabón Ramírez. All rights reserved.</p>
+      <p data-i18n="footer.copyright">&copy; 2024 Enrique Pabón Ramírez. All rights reserved.</p>
     </div>
   </footer>
 
   <script>
+    // ========================================
+    // LANGUAGE TRANSLATIONS
+    // ========================================
+    const translations = {
+      en: {
+        nav: {
+          about: "About",
+          projects: "Projects",
+          speaking: "Speaking",
+          experience: "Experience",
+          contact: "Contact",
+          design1: "Design 1"
+        },
+        experience: {
+          title: "Experience & Impact",
+          subtitle: "15+ years transforming operations across regulated industries",
+          timeline: {
+            current: {
+              years: "2022 – Present",
+              role: "AI Solutions & Delivery Leader",
+              company: "Agroindustry Sector"
+            },
+            cannabis: {
+              years: "2019 – 2022",
+              role: "Operations & Digital Transformation Manager",
+              company: "Pharmaceutical Cannabis Industry"
+            },
+            glass: {
+              years: "2015 – 2019",
+              role: "Supply Chain & Operations Lead",
+              company: "Glass Manufacturing"
+            },
+            auto: {
+              years: "2010 – 2015",
+              role: "Process Engineer & Continuous Improvement",
+              company: "Automotive Industry"
+            }
+          },
+          skills: {
+            title: "Areas of Expertise",
+            categories: {
+              aiData: {
+                title: "AI & Data",
+                llms: "LLMs & Generative AI",
+                vision: "Computer Vision",
+                conversational: "Conversational AI",
+                bi: "Business Intelligence",
+                noCode: "No-Code Automation"
+              },
+              supplyOps: {
+                title: "Supply Chain & Operations",
+                process: "Process Optimization",
+                erp: "ERP Integration",
+                logistics: "Logistics",
+                quality: "Quality Management",
+                planning: "Planning & Scheduling"
+              },
+              regulated: {
+                title: "Regulated Industries",
+                agroindustry: "Agroindustry",
+                cannabis: "Pharmaceutical Cannabis",
+                glass: "Glass Manufacturing",
+                auto: "Automotive"
+              },
+              governance: {
+                title: "Responsible AI & Governance",
+                ethics: "AI Ethics",
+                privacy: "Data Privacy",
+                compliance: "Compliance",
+                risk: "Risk Management"
+              },
+              training: {
+                title: "Training & Learning",
+                corporate: "Corporate Training",
+                webinars: "Webinars",
+                transfer: "Knowledge Transfer",
+                team: "Team Building"
+              }
+            }
+          }
+        },
+        hero: {
+          name: "Enrique Pabón Ramírez",
+          role: "Artificial Intelligence (AI) Solutions & Delivery Leader",
+          subtitle: "Industrial Engineer & MBA | AI Solutions, Data & Operations in Regulated Industries",
+          location: "Bogotá, Colombia",
+          ctaEmail: "Email",
+          ctaLinkedIn: "LinkedIn"
+        },
+        about: {
+          title: "About Me",
+          text: "Bilingual Industrial Engineer with an MBA and 15+ years of experience leading transformation in highly regulated and operationally complex sectors, including agroindustry, pharmaceutical cannabis, glass manufacturing, and automotive. I design and deliver AI and data-enabled solutions—from scoping to implementation and scale—across end-to-end supply chains, operations, and commercial functions. My recent work focuses on AI-powered process optimization, computer vision, conversational agents, and no-code automation integrated with ERP and BI environments. I serve as the AI lead and internal trainer in my current company and have delivered multiple webinars on AI for business to corporate audiences in Mexico, helping non-technical teams adopt AI responsibly and confidently."
+        },
+        projects: {
+          title: "Featured Projects",
+          subtitle: "Transforming operations through AI-powered solutions across regulated industries",
+          p1: {
+            title: "Smart-flow AI for Palm Oil Extraction Plants",
+            role: "AI Solutions Lead & Delivery Owner",
+            desc: "Design and implementation of an AI-based Smart-flow system that orchestrates fruit and process flows across multiple extraction plants, integrated with SAP/ERP and BI for real-time visibility.",
+            impact1: "Designed and led an AI-driven smart-flow system to orchestrate process steps across multiple palm oil extraction plants",
+            impact2: "Integrated the solution with SAP/ERP and BI dashboards to provide real-time visibility on throughput, bottlenecks, and quality",
+            impact3: "Reduced manual coordination and improved planning accuracy and plant utilization",
+            impact4: "Collaborated with operations, IT, and leadership teams to move from pilot to scalable deployment",
+            tag1: "LLMs",
+            tag2: "ERP Integration",
+            tag3: "Process Optimization"
+          },
+          p2: {
+            title: "Computer Vision for Fruit Quality & Process Control",
+            role: "Product Owner for Computer Vision Initiative",
+            desc: "Computer vision models to classify palm fruit quality and detect under-processed bunches, connected to quality metrics and waste reduction.",
+            impact1: "Spearheaded the development of computer vision models to classify palm fruit quality and detect under-processed bunches",
+            impact2: "Connected model outputs to quality dashboards and operational alerts for plant managers",
+            impact3: "Reduced reprocessing and waste while supporting more sustainable use of raw materials",
+            impact4: "Worked closely with field teams and plant operators to validate the solution in real-world conditions",
+            tag1: "Computer Vision",
+            tag2: "Quality Control",
+            tag3: "Sustainability"
+          },
+          p3: {
+            title: "AI-powered WhatsApp Advisory Agents for Farmers",
+            role: "Conversational AI Lead",
+            desc: "Design and deployment of AI agents on WhatsApp to support farmers and partners with guidance on deliveries, quality, and basic agronomic advice.",
+            impact1: "Co-designed and deployed AI-powered WhatsApp agents to support farmers and agricultural partners",
+            impact2: "Provided real-time guidance on deliveries, quality standards, and basic agronomic recommendations",
+            impact3: "Improved responsiveness, transparency, and trust with rural stakeholders",
+            impact4: "Reduced dependency on manual call-center interactions and repetitive inquiries",
+            tag1: "Conversational AI",
+            tag2: "LLMs",
+            tag3: "AgriTech"
+          },
+          p4: {
+            title: "No-code Automation with n8n for Operational Workflows",
+            role: "Automation Architect",
+            desc: "Implementation of no-code automations connecting ERP, logistics systems, messaging channels, and reporting tools to reduce manual work and errors.",
+            impact1: "Implemented automated workflows in n8n to connect ERP data, logistics systems, messaging channels, and reporting tools",
+            impact2: "Reduced repetitive manual tasks and improved data consistency between central and field teams",
+            impact3: "Accelerated information flow for planning, execution, and reporting",
+            impact4: "Enabled non-technical users to benefit from automation without writing code",
+            tag1: "No-Code Automation",
+            tag2: "n8n",
+            tag3: "Workflow Design"
+          },
+          p5: {
+            title: "AI-augmented BI Dashboards for Executive Decision-making",
+            role: "Analytics & Decision Support Lead",
+            desc: "Creation of interactive dashboards with AI-enhanced analysis for leadership and operational teams, combining key metrics and AI-generated narratives.",
+            impact1: "Built interactive BI dashboards combining KPIs with AI-generated insights and narratives",
+            impact2: "Helped senior leaders and operational managers monitor performance and detect anomalies early",
+            impact3: "Supported data-informed decisions across supply chain, operations, and commercial functions",
+            impact4: "Encouraged broader data literacy and self-service analytics within the organization",
+            tag1: "Business Intelligence",
+            tag2: "Data Analytics",
+            tag3: "Strategy Support"
+          }
+        },
+        speaking: {
+          title: "AI Speaking & Training",
+          subtitle: "Empowering teams to adopt AI responsibly and confidently",
+          card1: {
+            title: "AI Lead & Internal Trainer",
+            desc: "Serving as the AI lead and internal trainer in my current company, driving AI adoption and capability building across teams."
+          },
+          card2: {
+            title: "Corporate Webinars",
+            desc: "Delivered 5+ webinars on AI in business to corporate audiences in Mexico, helping non-technical teams understand and leverage AI effectively."
+          },
+          approach: {
+            title: "My Training Approach",
+            bullet1: { title: "Translation:", desc: "Translating complex AI concepts (LLMs, generative AI, automation) into practical business language." },
+            bullet2: { title: "Responsibility:", desc: "Designing hands-on sessions that focus on responsible AI, governance, and data privacy awareness." },
+            bullet3: { title: "Adoption:", desc: "Fostering curiosity, experimentation, and safe AI adoption across operational teams." }
+          }
+        },
+        contact: {
+          title: "Let's Connect",
+          subtitle: "Open to discussing AI solutions, speaking opportunities, and collaboration",
+          form: {
+            title: "Send a Message",
+            name: "Your Name",
+            email: "Your Email",
+            message: "Message",
+            submit: "Send Message",
+            namePlaceholder: "John Doe",
+            emailPlaceholder: "john@example.com",
+            messagePlaceholder: "How can I help you?"
+          },
+          downloadCV: "Download CV (PDF)"
+        },
+        footer: {
+          copyright: "© 2024 Enrique Pabón Ramírez. All rights reserved."
+        },
+        chatbot: {
+          title: "🤖 Ask about Enrique",
+          welcome: "Hello! I am Enrique's virtual assistant. I can answer questions about his professional experience, projects, skills, and background. How can I help you?",
+          placeholder: "Type your question here..."
+        }
+      },
+      es: {
+        nav: {
+          about: "Acerca de",
+          projects: "Proyectos",
+          speaking: "Conferencias",
+          experience: "Experiencia",
+          contact: "Contacto",
+          design1: "Diseño 1"
+        },
+        hero: {
+          name: "Enrique Pabón Ramírez",
+          role: "Líder en Soluciones y Entrega de IA",
+          subtitle: "Ingeniero Industrial & MBA | Soluciones de IA, Datos y Operaciones en Industrias Reguladas",
+          location: "Bogotá, Colombia",
+          ctaEmail: "Correo",
+          ctaLinkedIn: "LinkedIn"
+        },
+        about: {
+          title: "Sobre Mí",
+          text: "Ingeniero Industrial bilingüe con MBA y más de 15 años de experiencia liderando transformaciones en sectores altamente regulados y operativamente complejos, incluyendo agroindustria, cannabis farmacéutico, manufactura de vidrio y automotriz. Diseño y entrego soluciones habilitadas por IA y datos—desde el alcance hasta la implementación y escala—a través de cadenas de suministro de extremo a extremo, operaciones y funciones comerciales. Mi trabajo reciente se centra en la optimización de procesos impulsada por IA, visión por computadora, agentes conversacionales y automatización no-code integrada con entornos ERP y BI. Me desempeño como líder de IA y capacitador interno en mi empresa actual y he impartido múltiples seminarios web sobre IA para negocios a audiencias corporativas en México, ayudando a equipos no técnicos a adoptar la IA de manera responsable y segura."
+        },
+        projects: {
+          title: "Proyectos Destacados",
+          subtitle: "Transformando operaciones a través de soluciones impulsadas por IA en industrias reguladas",
+          p1: {
+            title: "Smart-flow AI para Plantas de Extracción de Aceite de Palma",
+            role: "Líder de Soluciones de IA y Dueño de Entrega",
+            desc: "Diseño e implementación de un sistema Smart-flow basado en IA que orquesta flujos de fruta y procesos en múltiples plantas de extracción, integrado con SAP/ERP y BI para visibilidad en tiempo real.",
+            impact1: "Diseñé y lideré un sistema smart-flow impulsado por IA para orquestar pasos de proceso en múltiples plantas de extracción de aceite de palma",
+            impact2: "Integré la solución con tableros de SAP/ERP y BI para proporcionar visibilidad en tiempo real sobre rendimiento, cuellos de botella y calidad",
+            impact3: "Reducción de la coordinación manual y mejora en la precisión de la planificación y utilización de la planta",
+            impact4: "Colaboración con equipos de operaciones, TI y liderazgo para pasar del piloto al despliegue escalable",
+            tag1: "LLMs",
+            tag2: "Integración ERP",
+            tag3: "Optimización de Procesos"
+          },
+          p2: {
+            title: "Visión por Computadora para Calidad de Fruta y Control de Procesos",
+            role: "Product Owner para Iniciativa de Visión por Computadora",
+            desc: "Modelos de visión por computadora para clasificar la calidad de la fruta de palma y detectar racimos subprocesados, conectados a métricas de calidad y reducción de desperdicios.",
+            impact1: "Lideré el desarrollo de modelos de visión por computadora para clasificar la calidad de la fruta de palma y detectar racimos subprocesados",
+            impact2: "Conecté salidas del modelo a tableros de calidad y alertas operativas para gerentes de planta",
+            impact3: "Reducción de reprocesamiento y desperdicio mientras se apoya un uso más sostenible de las materias primas",
+            impact4: "Trabajo cercano con equipos de campo y operadores de planta para validar la solución en condiciones del mundo real",
+            tag1: "Visión por Computadora",
+            tag2: "Control de Calidad",
+            tag3: "Sostenibilidad"
+          },
+          p3: {
+            title: "Agentes Asesores de WhatsApp impulsados por IA para Agricultores",
+            role: "Líder de IA Conversacional",
+            desc: "Diseño y despliegue de agentes de IA en WhatsApp para apoyar a agricultores y socios con orientación sobre entregas, calidad y consejos agronómicos básicos.",
+            impact1: "Co-diseñé y desplegué agentes de WhatsApp impulsados por IA para apoyar a agricultores y socios agrícolas",
+            impact2: "Proporcioné orientación en tiempo real sobre entregas, estándares de calidad y recomendaciones agronómicas básicas",
+            impact3: "Mejora en la capacidad de respuesta, transparencia y confianza con los interesados rurales",
+            impact4: "Reducción de la dependencia de interacciones manuales en call centers y consultas repetitivas",
+            tag1: "IA Conversacional",
+            tag2: "LLMs",
+            tag3: "AgriTech"
+          },
+          p4: {
+            title: "Automatización No-code con n8n para Flujos de Trabajo Operativos",
+            role: "Arquitecto de Automatización",
+            desc: "Implementación de automatizaciones no-code conectando ERP, sistemas logísticos, canales de mensajería y herramientas de informes para reducir el trabajo manual y los errores.",
+            impact1: "Implementé flujos de trabajo automatizados en n8n para conectar datos de ERP, sistemas logísticos, canales de mensajería y herramientas de informes",
+            impact2: "Reducción de tareas manuales repetitivas y mejora en la consistencia de datos entre equipos centrales y de campo",
+            impact3: "Flujo de información acelerado para planificación, ejecución e informes",
+            impact4: "Habilité a usuarios no técnicos para beneficiarse de la automatización sin escribir código",
+            tag1: "Automatización No-Code",
+            tag2: "n8n",
+            tag3: "Diseño de Flujos de Trabajo"
+          },
+          p5: {
+            title: "Tableros de BI Aumentados con IA para Toma de Decisiones Ejecutivas",
+            role: "Líder de Analítica y Soporte a Decisiones",
+            desc: "Creación de tableros interactivos con análisis mejorado por IA para equipos de liderazgo y operativos, combinando métricas clave y narrativas generadas por IA.",
+            impact1: "Construí tableros de BI interactivos combinando KPIs con insights y narrativas generadas por IA",
+            impact2: "Ayudé a líderes senior y gerentes operativos a monitorear el rendimiento y detectar anomalías temprano",
+            impact3: "Apoyo a decisiones informadas por datos a través de la cadena de suministro, operaciones y funciones comerciales",
+            impact4: "Fomento de una mayor alfabetización de datos y analítica de autoservicio dentro de la organización",
+            tag1: "Inteligencia de Negocios",
+            tag2: "Analítica de Datos",
+            tag3: "Soporte Estratégico"
+          }
+        },
+        experience: {
+          title: "Experiencia e Impacto",
+          subtitle: "Más de 15 años transformando operaciones en industrias reguladas",
+          timeline: {
+            current: {
+              years: "2022 – Presente",
+              role: "Líder de Soluciones y Entrega de IA",
+              company: "Sector Agroindustrial"
+            },
+            cannabis: {
+              years: "2019 – 2022",
+              role: "Gerente de Operaciones y Transformación Digital",
+              company: "Industria de Cannabis Farmacéutico"
+            },
+            glass: {
+              years: "2015 – 2019",
+              role: "Líder de Cadena de Suministro y Operaciones",
+              company: "Manufactura de Vidrio"
+            },
+            auto: {
+              years: "2010 – 2015",
+              role: "Ingeniero de Procesos y Mejora Continua",
+              company: "Industria Automotriz"
+            }
+          },
+          skills: {
+            title: "Áreas de Experiencia",
+            categories: {
+              aiData: {
+                title: "IA y Datos",
+                llms: "LLMs e IA Generativa",
+                vision: "Visión por Computadora",
+                conversational: "IA Conversacional",
+                bi: "Inteligencia de Negocios",
+                noCode: "Automatización No-code"
+              },
+              supplyOps: {
+                title: "Cadena de Suministro y Operaciones",
+                process: "Optimización de Procesos",
+                erp: "Integración ERP",
+                logistics: "Logística",
+                quality: "Gestión de Calidad",
+                planning: "Planeación y Programación"
+              },
+              regulated: {
+                title: "Industrias Reguladas",
+                agroindustry: "Agroindustria",
+                cannabis: "Cannabis Farmacéutico",
+                glass: "Manufactura de Vidrio",
+                auto: "Automotriz"
+              },
+              governance: {
+                title: "IA Responsable y Gobernanza",
+                ethics: "Ética en IA",
+                privacy: "Privacidad de Datos",
+                compliance: "Cumplimiento",
+                risk: "Gestión de Riesgos"
+              },
+              training: {
+                title: "Entrenamiento y Aprendizaje",
+                corporate: "Capacitación Corporativa",
+                webinars: "Webinars",
+                transfer: "Transferencia de Conocimiento",
+                team: "Trabajo en Equipo"
+              }
+            }
+          }
+        },
+        speaking: {
+          title: "Conferencias y Capacitación en IA",
+          subtitle: "Empoderando equipos para adoptar la IA de manera responsable y segura",
+          card1: {
+            title: "Líder de IA y Capacitador Interno",
+            desc: "Sirviendo como líder de IA y capacitador interno en mi empresa actual, impulsando la adopción de IA y la construcción de capacidades en los equipos."
+          },
+          card2: {
+            title: "Seminarios Web Corporativos",
+            desc: "Impartí más de 5 seminarios web sobre IA en negocios a audiencias corporativas en México, ayudando a equipos no técnicos a entender y aprovechar la IA de manera efectiva."
+          },
+          approach: {
+            title: "Mi Enfoque de Capacitación",
+            bullet1: { title: "Traducción:", desc: "Traducir conceptos complejos de IA (LLMs, IA generativa, automatización) a un lenguaje de negocios práctico." },
+            bullet2: { title: "Responsabilidad:", desc: "Diseñar sesiones prácticas enfocadas en IA responsable, gobernanza y conciencia sobre privacidad de datos." },
+            bullet3: { title: "Adopción:", desc: "Fomentar la curiosidad, la experimentación y la adopción segura de IA en equipos operativos." }
+          }
+        },
+        contact: {
+          title: "Conectemos",
+          subtitle: "Abierto a discutir soluciones de IA, oportunidades de conferencias y colaboración",
+          form: {
+            title: "Enviar un Mensaje",
+            name: "Tu Nombre",
+            email: "Tu Correo",
+            message: "Mensaje",
+            submit: "Enviar Mensaje",
+            namePlaceholder: "Juan Pérez",
+            emailPlaceholder: "juan@ejemplo.com",
+            messagePlaceholder: "¿Cómo puedo ayudarte?"
+          },
+          downloadCV: "Descargar CV (PDF)"
+        },
+        footer: {
+          copyright: "© 2024 Enrique Pabón Ramírez. Todos los derechos reservados."
+        },
+        chatbot: {
+          title: "🤖 Pregunta sobre Enrique",
+          welcome: "¡Hola! Soy el asistente virtual de Enrique. Puedo responder preguntas sobre su experiencia profesional, proyectos, habilidades y trayectoria. ¿En qué puedo ayudarte?",
+          placeholder: "Escribe tu pregunta aquí..."
+        }
+      }
+    };
+
+    // Language Switching Logic
+    function setLanguage(lang) {
+      // Update all elements with data-i18n attribute
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const keys = element.getAttribute('data-i18n').split('.');
+        let translation = translations[lang];
+
+        // Navigate through the object to find the translation
+        for (const key of keys) {
+          if (translation && translation[key]) {
+            translation = translation[key];
+          } else {
+            translation = null;
+            break;
+          }
+        }
+
+        if (translation) {
+          element.textContent = translation;
+        }
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+        const keys = element.getAttribute('data-i18n-placeholder').split('.');
+        let translation = translations[lang];
+
+        for (const key of keys) {
+          if (translation && translation[key]) {
+            translation = translation[key];
+          } else {
+            translation = null;
+            break;
+          }
+        }
+
+        if (translation) {
+          element.placeholder = translation;
+        }
+      });
+
+      // Update button text
+      document.getElementById('current-lang').textContent = lang.toUpperCase();
+
+      // Save preference
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Initialize Language
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      setLanguage(savedLang);
+
+      // Toggle Button Event Listener
+      document.getElementById('language-toggle').addEventListener('click', () => {
+        const currentLang = document.getElementById('current-lang').textContent.toLowerCase();
+        const newLang = currentLang === 'en' ? 'es' : 'en';
+        setLanguage(newLang);
+      });
+    });
+
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -1469,5 +2345,274 @@
       }
     });
   </script>
+
+  <!-- CHATBOT WIDGET -->
+  <button id="chatbot-button" aria-label="Open chatbot">💬</button>
+
+  <div id="chatbot-container">
+    <div class="chatbot-header">
+      <h3 data-i18n="chatbot.title">🤖 Ask about Enrique</h3>
+      <button class="chatbot-close" aria-label="Close chatbot">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <div class="message bot">
+        <div class="message-avatar">🤖</div>
+        <div class="message-content" data-i18n="chatbot.welcome">
+          ¡Hola! Soy el asistente virtual de Enrique. Puedo responder preguntas sobre su experiencia profesional,
+          proyectos, habilidades y trayectoria. ¿En qué puedo ayudarte?
+        </div>
+      </div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbot-input" placeholder="Escribe tu pregunta aquí..." autocomplete="off"
+        data-i18n-placeholder="chatbot.placeholder" />
+      <button class="chatbot-send" id="chatbot-send" aria-label="Send message">
+        ➤
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // ========================================
+    // CHATBOT FUNCTIONALITY
+    // ========================================
+
+    // IMPORTANT: Add your Gemini API key here
+    const GEMINI_API_KEY = 'AIzaSyCg7cqRZ8QzPq4G3peD0gw9qPQPNSsCBdw';
+    const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent';
+
+    // CV Context for the AI
+    const CV_CONTEXT = `You are a friendly and professional AI assistant representing Enrique Pabón Ramírez. Your role is to help visitors learn about his professional background and experience.
+
+CRITICAL INSTRUCTIONS:
+- ALWAYS respond in THIRD PERSON (use "Enrique", "he", "his", "him" - NEVER use "I", "my", "me")
+- ALWAYS respond in the SAME LANGUAGE the user asks in (Spanish question = Spanish answer, English question = English answer)
+- Be warm, friendly, and professional in tone
+- Be concise but informative
+- If asked about something not in his CV, politely say you don't have that information and suggest contacting Enrique directly
+
+ABOUT ENRIQUE PABÓN RAMÍREZ:
+
+PROFESSIONAL SUMMARY:
+Enrique is a bilingual Industrial Engineer with an MBA and over 15 years of professional experience. He specializes in AI Solutions & Delivery Leadership, particularly in regulated industries. His expertise spans AI, Data, and Operations transformation across diverse sectors including agroindustry, pharmaceutical cannabis, glass manufacturing, and automotive.
+
+CURRENT ROLE:
+Enrique currently serves as an AI lead and internal trainer at his company, where he has delivered 5+ webinars on AI for business to corporate audiences in Mexico.
+
+KEY PROJECTS:
+
+1. Smart-flow AI for Palm Oil Extraction
+   - Developed an AI-based system that orchestrates fruit and process flows across multiple palm oil extraction plants
+   - Fully integrated with SAP/ERP systems
+   - Optimizes production efficiency and resource allocation
+
+2. Computer Vision for Fruit Quality
+   - Created computer vision models to classify palm fruit quality
+   - Detects under-processed bunches in real-time
+   - Improves quality control and reduces waste
+
+3. WhatsApp Advisory Agents for Farmers
+   - Built AI-powered conversational agents accessible via WhatsApp
+   - Provides real-time guidance and support to farmers
+   - Makes agricultural expertise accessible through familiar technology
+
+4. No-code Automation with n8n
+   - Designed and implemented workflow automation connecting ERP, logistics, messaging, and reporting tools
+   - Streamlines business processes without traditional coding
+   - Enables rapid deployment of business solutions
+
+5. AI-augmented BI Dashboards
+   - Developed interactive business intelligence dashboards
+   - Integrated AI-generated insights and recommendations for leadership
+   - Transforms data into actionable business intelligence
+
+AREAS OF EXPERTISE:
+- AI & Data Strategy
+- Supply Chain Operations
+- Regulated Industries (pharmaceutical, agroindustry)
+- Process Optimization
+- Computer Vision & Image Recognition
+- Large Language Models (LLMs) & Generative AI
+- AI Governance & Ethics
+- Training & Leadership Development
+- Business Intelligence & Analytics
+
+EDUCATION:
+- MBA (Master of Business Administration)
+- Industrial Engineering degree
+
+SPEAKING & TRAINING EXPERIENCE:
+Enrique is passionate about making AI accessible and understandable for business audiences. He:
+- Serves as an AI lead and internal trainer
+- Has delivered corporate webinars on AI for business
+- Focuses on responsible AI, governance, and data privacy
+- Excels at translating complex AI concepts into practical business language
+- Helps organizations understand and implement AI ethically and effectively
+
+LOCATION: Bogotá, Colombia
+
+CONTACT INFORMATION:
+- Email: enriquepabonramirez@gmail.com
+- Phone: +57 314 206 4795
+- LinkedIn: linkedin.com/in/enriquepabon
+
+RESPONSE EXAMPLES:
+- If asked in Spanish: "Enrique tiene más de 15 años de experiencia en..."
+- If asked in English: "Enrique has over 15 years of experience in..."
+- Always maintain a friendly, professional, and helpful tone
+- Encourage visitors to reach out to Enrique directly for detailed conversations or opportunities`;
+
+    let conversationHistory = [];
+
+    // DOM Elements
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotClose = document.querySelector('.chatbot-close');
+    const chatbotMessages = document.getElementById('chatbot-messages');
+    const chatbotInput = document.getElementById('chatbot-input');
+    const chatbotSend = document.getElementById('chatbot-send');
+
+    // Toggle chatbot
+    chatbotButton.addEventListener('click', () => {
+      chatbotContainer.classList.add('active');
+      chatbotButton.style.display = 'none';
+      chatbotInput.focus();
+    });
+
+    chatbotClose.addEventListener('click', () => {
+      chatbotContainer.classList.remove('active');
+      chatbotButton.style.display = 'flex';
+    });
+
+    // Send message on Enter key
+    chatbotInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter' && !chatbotSend.disabled) {
+        sendMessage();
+      }
+    });
+
+    // Send message on button click
+    chatbotSend.addEventListener('click', sendMessage);
+
+    async function sendMessage() {
+      const message = chatbotInput.value.trim();
+      if (!message) return;
+
+      // Check if API key is configured
+      if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+        addMessage('bot', '⚠️ El chatbot no está configurado. Por favor, agrega tu API key de Gemini en el código.');
+        return;
+      }
+
+      // Add user message to chat
+      addMessage('user', message);
+      chatbotInput.value = '';
+      chatbotSend.disabled = true;
+
+      // Show typing indicator
+      const typingIndicator = showTypingIndicator();
+
+      try {
+        // Prepare the message with context only on first message
+        const messageWithContext = conversationHistory.length === 0
+          ? `${CV_CONTEXT}\n\nUser question: ${message}`
+          : message;
+
+        // Call Gemini API
+        const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            contents: [
+              ...conversationHistory,
+              {
+                role: 'user',
+                parts: [{ text: messageWithContext }]
+              }
+            ],
+            generationConfig: {
+              temperature: 0.7,
+              maxOutputTokens: 500,
+            }
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const aiResponse = data.candidates[0].content.parts[0].text;
+
+        // Remove typing indicator
+        typingIndicator.remove();
+
+        // Add AI response to chat
+        addMessage('bot', aiResponse);
+
+        // Update conversation history
+        conversationHistory.push(
+          { role: 'user', parts: [{ text: message }] },
+          { role: 'model', parts: [{ text: aiResponse }] }
+        );
+
+        // Limit history to last 10 exchanges
+        if (conversationHistory.length > 20) {
+          conversationHistory = conversationHistory.slice(-20);
+        }
+
+      } catch (error) {
+        console.error('Chatbot error:', error);
+        typingIndicator.remove();
+        addMessage('bot', '❌ Lo siento, hubo un error al procesar tu pregunta. Por favor, intenta de nuevo o contacta directamente a Enrique.');
+      } finally {
+        chatbotSend.disabled = false;
+        chatbotInput.focus();
+      }
+    }
+
+    function addMessage(type, content) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${type}`;
+
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.textContent = type === 'bot' ? '🤖' : '👤';
+
+      const messageContent = document.createElement('div');
+      messageContent.className = 'message-content';
+      messageContent.textContent = content;
+
+      messageDiv.appendChild(avatar);
+      messageDiv.appendChild(messageContent);
+
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot';
+      typingDiv.id = 'typing-indicator';
+
+      const avatar = document.createElement('div');
+      avatar.className = 'message-avatar';
+      avatar.textContent = '🤖';
+
+      const indicator = document.createElement('div');
+      indicator.className = 'typing-indicator';
+      indicator.innerHTML = '<span></span><span></span><span></span>';
+
+      typingDiv.appendChild(avatar);
+      typingDiv.appendChild(indicator);
+      chatbotMessages.appendChild(typingDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+      return typingDiv;
+    }
+  </script>
 </body>
+
 </html>
