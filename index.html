@@ -235,6 +235,76 @@ input,textarea{font-family:inherit;border:none;outline:none}
   .float-chat{right:4.5rem}
 }
 
+/* ========== ANIMATED GRADIENT BG FOR HERO ========== */
+.hero::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(16,185,129,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(245,158,11,.05) 0%,transparent 50%);animation:heroGlow 12s ease-in-out infinite alternate;pointer-events:none}
+@keyframes heroGlow{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(3%,-3%) rotate(3deg)}}
+
+/* Hero badge shimmer */
+.hero-badge{position:relative;overflow:hidden}
+.hero-badge::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 4s ease-in-out infinite}
+@keyframes shimmer{0%,100%{left:-100%}50%{left:150%}}
+
+/* ========== SECTION DIVIDER LINES ========== */
+.section-label{position:relative;padding-left:2rem}
+.section-label::before{content:'';position:absolute;left:0;top:50%;width:1.2rem;height:2px;background:#10b981;transform:translateY(-50%)}
+
+/* ========== ABOUT: ANIMATED TIMELINE LINE ========== */
+.timeline{position:relative;padding-left:1.5rem;border-left:none}
+.timeline::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:linear-gradient(to bottom,#10b981,#0f4c5c);transition:height 1.5s cubic-bezier(.4,0,.2,1)}
+.timeline.revealed::before{height:100%}
+
+/* ========== STAT CARD HOVER GLOW ========== */
+.stat-card{position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at 50% 0%,rgba(16,185,129,.12),transparent 70%);opacity:0;transition:opacity .4s}
+.stat-card:hover::before{opacity:1}
+
+/* ========== PROJECT CARD SHINE ON HOVER ========== */
+.project-card{position:relative;overflow:hidden}
+.project-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(16,185,129,.06) 0%,transparent 60%);opacity:0;transition:opacity .5s;pointer-events:none}
+.project-card:hover::after{opacity:1}
+
+/* ========== ONZA CARD BORDER GLOW ANIMATION ========== */
+.onza-card{position:relative;overflow:hidden}
+.onza-card::before{content:'';position:absolute;inset:-1px;border-radius:17px;background:conic-gradient(from 0deg,transparent,#10b981,transparent,rgba(245,158,11,.4),transparent);opacity:0;transition:opacity .5s;z-index:-1;animation:cardBorderRotate 4s linear infinite}
+.onza-card:hover::before{opacity:1}
+@keyframes cardBorderRotate{to{transform:rotate(360deg)}}
+.onza-card::after{content:'';position:absolute;inset:1px;border-radius:15px;background:rgba(10,46,54,.95);z-index:-1}
+.onza-icon{transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.onza-card:hover .onza-icon{transform:scale(1.2) rotate(-5deg)}
+
+/* ========== SPEAKING IMAGE TILT ON SCROLL ========== */
+.speaking-img{transition:transform .6s cubic-bezier(.4,0,.2,1)}
+
+/* ========== CONTACT CARD LEFT-BORDER REVEAL ========== */
+.contact-card{position:relative;overflow:hidden}
+.contact-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:#10b981;transition:height .4s cubic-bezier(.4,0,.2,1)}
+.contact-card:hover::before{height:100%}
+
+/* ========== FLOATING WIDGETS PULSE ========== */
+.float-wa::before,.float-chat::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid currentColor;opacity:0;animation:widgetPulse 2.5s ease-out infinite}
+.float-wa::before{border-color:#25d366}
+.float-chat::before{border-color:#10b981}
+@keyframes widgetPulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.4);opacity:0}}
+
+/* ========== TAG HOVER ========== */
+.tag{transition:all .3s cubic-bezier(.4,0,.2,1);cursor:default}
+.tag:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.15)}
+.tag.highlight:hover{background:rgba(16,185,129,.2)}
+
+/* ========== BTN RIPPLE EFFECT ========== */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.25) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.btn:hover::after{opacity:1}
+
+/* ========== FOOTER LINK UNDERLINE ANIMATION ========== */
+.footer-links a{position:relative}
+.footer-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:#10b981;transition:width .3s}
+.footer-links a:hover::after{width:100%}
+
+/* ========== EDU BLOCK ITEMS REVEAL ========== */
+.edu-item{position:relative;padding-left:1rem;border-left:2px solid transparent;transition:border-color .3s,padding-left .3s}
+.edu-item:hover{border-left-color:#10b981;padding-left:1.25rem}
+
 /* ========== MISC ========== */
 ::selection{background:#10b981;color:#fff}
 ::-webkit-scrollbar{width:6px}
@@ -938,48 +1008,66 @@ window.addEventListener('scroll', function() {
 });
 
 /* ============================================================
-   GSAP ANIMATIONS
+   GSAP ANIMATIONS - PREMIUM PER-SECTION
    ============================================================ */
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero
-var heroTl = gsap.timeline({ defaults:{ ease:'power3.out' }});
-heroTl.from('.hero-badge', { y:30, opacity:0, duration:.8 })
-  .from('.hero-title span', { y:50, opacity:0, duration:.9, stagger:.15 }, '-=.5')
-  .from('.hero-sub', { y:30, opacity:0, duration:.7 }, '-=.5')
-  .from('.hero-meta', { y:20, opacity:0, duration:.5 }, '-=.4')
-  .from('.hero-ctas .btn', { y:20, opacity:0, duration:.5, stagger:.1 }, '-=.3')
-  .from('.profile-ring', { scale:.85, opacity:0, duration:1, ease:'back.out(1.4)' }, '-=1');
+// ---- HERO: cinematic text reveal + image entrance ----
+var heroTl = gsap.timeline({ defaults:{ ease:'power4.out' }});
+heroTl
+  .from('.hero-badge', { y:40, opacity:0, duration:1, ease:'elastic.out(1,.6)' })
+  .from('.hero-title span', { y:80, opacity:0, duration:1.1, stagger:.2, ease:'power4.out' }, '-=.6')
+  .from('.hero-sub', { y:30, opacity:0, duration:.8, ease:'power3.out' }, '-=.6')
+  .from('.hero-meta', { y:20, opacity:0, duration:.6 }, '-=.5')
+  .from('.hero-ctas .btn', { y:25, opacity:0, duration:.6, stagger:.12, ease:'back.out(1.4)' }, '-=.4')
+  .from('.profile-ring', { scale:.6, opacity:0, rotation:-10, duration:1.3, ease:'elastic.out(1,.5)' }, '-=1.2')
+  .from('.scroll-indicator', { opacity:0, y:-15, duration:.8 }, '-=.3');
 
-// Section titles
-gsap.utils.toArray('.section-label, .section-title, .section-subtitle').forEach(function(el) {
-  gsap.from(el, { y:40, opacity:0, duration:.8, ease:'power3.out',
-    scrollTrigger:{ trigger:el, start:'top 88%', toggleActions:'play none none none' }
+// ---- SECTION HEADERS: label slides in, title clips up, subtitle fades ----
+gsap.utils.toArray('.section-label').forEach(function(el) {
+  gsap.from(el, { x:-30, opacity:0, duration:.6, ease:'power3.out',
+    scrollTrigger:{ trigger:el, start:'top 88%' }
   });
 });
-
-// About text
-gsap.utils.toArray('.about-text p').forEach(function(el, i) {
-  gsap.from(el, { y:30, opacity:0, duration:.7, delay:i*.1, ease:'power3.out',
+gsap.utils.toArray('.section-title').forEach(function(el) {
+  gsap.from(el, { y:50, opacity:0, duration:.9, ease:'power4.out',
+    scrollTrigger:{ trigger:el, start:'top 88%' }
+  });
+});
+gsap.utils.toArray('.section-subtitle').forEach(function(el) {
+  gsap.from(el, { y:25, opacity:0, duration:.7, delay:.15, ease:'power3.out',
     scrollTrigger:{ trigger:el, start:'top 90%' }
   });
 });
 
-// Tags
+// ---- ABOUT: paragraphs stagger up, tags pop in, sidebar flies in ----
+gsap.utils.toArray('.about-text p').forEach(function(el, i) {
+  gsap.from(el, { y:40, opacity:0, duration:.8, delay:i*.15, ease:'power3.out',
+    scrollTrigger:{ trigger:el, start:'top 90%' }
+  });
+});
+
 gsap.utils.toArray('.tag').forEach(function(el, i) {
-  gsap.from(el, { scale:.8, opacity:0, duration:.4, delay:i*.04, ease:'back.out(1.4)',
+  gsap.from(el, { scale:0, opacity:0, duration:.5, delay:i*.04, ease:'back.out(2)',
     scrollTrigger:{ trigger:'.tags-wrap', start:'top 90%' }
   });
 });
 
-// Stats counter
+// Stats: cards flip in + counter animation
+gsap.utils.toArray('.stat-card').forEach(function(el, i) {
+  gsap.from(el, { rotationY:90, opacity:0, duration:.8, delay:i*.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'.stats-grid', start:'top 88%' },
+    transformPerspective:800
+  });
+});
+
 document.querySelectorAll('.counter').forEach(function(c) {
   var target = +c.getAttribute('data-target');
   ScrollTrigger.create({
     trigger: c, start:'top 90%',
     onEnter: function() {
       gsap.to(c, {
-        duration: target > 100 ? 2 : 1.2,
+        duration: target > 100 ? 2.5 : 1.5,
         innerText: target,
         snap:{ innerText:1 },
         ease:'power2.out'
@@ -988,52 +1076,118 @@ document.querySelectorAll('.counter').forEach(function(c) {
   });
 });
 
-// Stat cards
-gsap.utils.toArray('.stat-card').forEach(function(el, i) {
-  gsap.from(el, { y:30, opacity:0, duration:.6, delay:i*.1, ease:'power3.out',
-    scrollTrigger:{ trigger:el, start:'top 90%' }
+// Timeline: line reveals + items stagger from left with dot pulse
+var tl = document.querySelector('.timeline');
+if (tl) {
+  ScrollTrigger.create({
+    trigger: tl, start:'top 85%',
+    onEnter: function() { tl.classList.add('revealed'); }
   });
-});
-
-// Timeline
+}
 gsap.utils.toArray('.timeline-item').forEach(function(el, i) {
-  gsap.from(el, { x:-40, opacity:0, duration:.6, delay:i*.1, ease:'power3.out',
+  gsap.from(el, { x:-50, opacity:0, duration:.7, delay:i*.12, ease:'power3.out',
     scrollTrigger:{ trigger:el, start:'top 92%' }
   });
 });
 
-// Project cards
+// ---- PROJECTS: cards rise with rotation + stagger per row ----
 gsap.utils.toArray('.project-card').forEach(function(el, i) {
-  gsap.from(el, { y:50, opacity:0, duration:.7, delay:(i % 3)*.12, ease:'power3.out',
-    scrollTrigger:{ trigger:el, start:'top 90%' }
+  gsap.from(el, {
+    y:80, opacity:0, rotationX:8, duration:.9,
+    delay:(i % 3)*.15,
+    ease:'power3.out',
+    transformPerspective:1000,
+    scrollTrigger:{ trigger:el, start:'top 92%' }
   });
 });
 
-// Onza cards
+// Project images: parallax inside card on scroll
+gsap.utils.toArray('.project-img-wrap img').forEach(function(img) {
+  gsap.fromTo(img, { y:'-10%' }, {
+    y:'10%', ease:'none',
+    scrollTrigger:{ trigger:img.closest('.project-card'), start:'top bottom', end:'bottom top', scrub:true }
+  });
+});
+
+// ---- ONZA AI: cards scale with rotation + glow ----
 gsap.utils.toArray('.onza-card').forEach(function(el, i) {
-  gsap.from(el, { scale:.85, opacity:0, duration:.7, delay:i*.1, ease:'back.out(1.6)',
+  gsap.from(el, {
+    scale:.7, opacity:0, rotation:-3, duration:.9,
+    delay:i*.13, ease:'elastic.out(1,.6)',
     scrollTrigger:{ trigger:el, start:'top 90%' }
   });
 });
 
-// Speaking
-gsap.from('.speaking-content', { x:-40, opacity:0, duration:.8, ease:'power3.out',
+// Onza CTA button
+gsap.from('.onza-cta', { y:30, opacity:0, duration:.7, ease:'power3.out',
+  scrollTrigger:{ trigger:'.onza-cta', start:'top 92%' }
+});
+
+// ---- SPEAKING: content slides from left, image zooms from right with tilt ----
+var speakingTl = gsap.timeline({
   scrollTrigger:{ trigger:'.speaking-grid', start:'top 80%' }
 });
-gsap.from('.speaking-img', { x:40, opacity:0, duration:.8, ease:'power3.out',
+speakingTl
+  .from('.speaking-content', { x:-60, opacity:0, duration:1, ease:'power3.out' })
+  .from('.speaking-bullets li', { x:-30, opacity:0, duration:.5, stagger:.12, ease:'power3.out' }, '-=.5')
+  .from('.edu-block', { y:30, opacity:0, duration:.7, ease:'power3.out' }, '-=.3');
+
+gsap.from('.speaking-img', { x:80, opacity:0, rotation:3, duration:1.2, ease:'power3.out',
   scrollTrigger:{ trigger:'.speaking-grid', start:'top 80%' }
 });
 
-// Contact cards
+// Speaking image parallax tilt on scroll
+gsap.to('.speaking-img', {
+  rotation:-2, y:-20, ease:'none',
+  scrollTrigger:{ trigger:'.speaking-grid', start:'top bottom', end:'bottom top', scrub:true }
+});
+
+// ---- CONTACT: cards cascade in + form slides up ----
 gsap.utils.toArray('.contact-card').forEach(function(el, i) {
-  gsap.from(el, { x:-30, opacity:0, duration:.5, delay:i*.1, ease:'power3.out',
+  gsap.from(el, { x:-50, opacity:0, rotation:-2, duration:.6, delay:i*.1, ease:'power3.out',
     scrollTrigger:{ trigger:'.contact-grid', start:'top 85%' }
   });
 });
 
-// Contact form
-gsap.from('.contact-form', { y:40, opacity:0, duration:.8, ease:'power3.out',
+gsap.from('.cv-download', { y:20, opacity:0, duration:.6, delay:.4, ease:'power3.out',
+  scrollTrigger:{ trigger:'.contact-grid', start:'top 85%' }
+});
+
+var formTl = gsap.timeline({
   scrollTrigger:{ trigger:'.contact-form', start:'top 88%' }
+});
+formTl
+  .from('.contact-form', { y:50, opacity:0, duration:.8, ease:'power3.out' })
+  .from('.form-group', { y:25, opacity:0, duration:.5, stagger:.1, ease:'power3.out' }, '-=.4')
+  .from('.form-submit', { y:20, opacity:0, scale:.95, duration:.5, ease:'back.out(1.4)' }, '-=.2');
+
+// ---- FOOTER: fade up ----
+gsap.from('.footer-inner', { y:20, opacity:0, duration:.6, ease:'power3.out',
+  scrollTrigger:{ trigger:'.footer', start:'top 95%' }
+});
+
+// ---- NAV: active link highlight on scroll ----
+var sections = document.querySelectorAll('section[id], .section-pad[id]');
+sections.forEach(function(sec) {
+  ScrollTrigger.create({
+    trigger: sec, start:'top 40%', end:'bottom 40%',
+    onToggle: function(self) {
+      if (self.isActive) {
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a) {
+          a.style.color = a.getAttribute('href') === '#' + sec.id ? '#10b981' : '';
+        });
+      }
+    }
+  });
+});
+
+// ---- BUTTON RIPPLE: track mouse position for radial effect ----
+document.querySelectorAll('.btn').forEach(function(btn) {
+  btn.addEventListener('mousemove', function(e) {
+    var rect = btn.getBoundingClientRect();
+    btn.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+    btn.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+  });
 });
 
 /* ============================================================
