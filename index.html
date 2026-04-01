@@ -235,75 +235,54 @@ input,textarea{font-family:inherit;border:none;outline:none}
   .float-chat{right:4.5rem}
 }
 
-/* ========== ANIMATED GRADIENT BG FOR HERO ========== */
-.hero::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(16,185,129,.08) 0%,transparent 50%),radial-gradient(ellipse at 70% 50%,rgba(245,158,11,.05) 0%,transparent 50%);animation:heroGlow 12s ease-in-out infinite alternate;pointer-events:none}
-@keyframes heroGlow{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(3%,-3%) rotate(3deg)}}
+/* ========== SUBTLE SECTION LABEL LINE ========== */
+.section-label{position:relative;padding-left:1.8rem}
+.section-label::before{content:'';position:absolute;left:0;top:50%;width:1rem;height:1.5px;background:#10b981;transform:translateY(-50%)}
 
-/* Hero badge shimmer */
-.hero-badge{position:relative;overflow:hidden}
-.hero-badge::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);animation:shimmer 4s ease-in-out infinite}
-@keyframes shimmer{0%,100%{left:-100%}50%{left:150%}}
-
-/* ========== SECTION DIVIDER LINES ========== */
-.section-label{position:relative;padding-left:2rem}
-.section-label::before{content:'';position:absolute;left:0;top:50%;width:1.2rem;height:2px;background:#10b981;transform:translateY(-50%)}
-
-/* ========== ABOUT: ANIMATED TIMELINE LINE ========== */
+/* ========== TIMELINE LINE REVEAL ========== */
 .timeline{position:relative;padding-left:1.5rem;border-left:none}
-.timeline::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:linear-gradient(to bottom,#10b981,#0f4c5c);transition:height 1.5s cubic-bezier(.4,0,.2,1)}
+.timeline::before{content:'';position:absolute;left:0;top:0;width:2px;height:0;background:linear-gradient(to bottom,#10b981,#e2e8f0);transition:height 1.2s ease}
 .timeline.revealed::before{height:100%}
 
-/* ========== STAT CARD HOVER GLOW ========== */
-.stat-card{position:relative;overflow:hidden}
-.stat-card::before{content:'';position:absolute;inset:0;border-radius:16px;background:radial-gradient(circle at 50% 0%,rgba(16,185,129,.12),transparent 70%);opacity:0;transition:opacity .4s}
-.stat-card:hover::before{opacity:1}
-
-/* ========== PROJECT CARD SHINE ON HOVER ========== */
-.project-card{position:relative;overflow:hidden}
-.project-card::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(16,185,129,.06) 0%,transparent 60%);opacity:0;transition:opacity .5s;pointer-events:none}
-.project-card:hover::after{opacity:1}
-
-/* ========== ONZA CARD BORDER GLOW ANIMATION ========== */
-.onza-card{position:relative;overflow:hidden}
-.onza-card::before{content:'';position:absolute;inset:-1px;border-radius:17px;background:conic-gradient(from 0deg,transparent,#10b981,transparent,rgba(245,158,11,.4),transparent);opacity:0;transition:opacity .5s;z-index:-1;animation:cardBorderRotate 4s linear infinite}
-.onza-card:hover::before{opacity:1}
-@keyframes cardBorderRotate{to{transform:rotate(360deg)}}
-.onza-card::after{content:'';position:absolute;inset:1px;border-radius:15px;background:rgba(10,46,54,.95);z-index:-1}
-.onza-icon{transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.onza-card:hover .onza-icon{transform:scale(1.2) rotate(-5deg)}
-
-/* ========== SPEAKING IMAGE TILT ON SCROLL ========== */
-.speaking-img{transition:transform .6s cubic-bezier(.4,0,.2,1)}
-
-/* ========== CONTACT CARD LEFT-BORDER REVEAL ========== */
-.contact-card{position:relative;overflow:hidden}
-.contact-card::before{content:'';position:absolute;left:0;top:0;width:3px;height:0;background:#10b981;transition:height .4s cubic-bezier(.4,0,.2,1)}
-.contact-card:hover::before{height:100%}
-
-/* ========== FLOATING WIDGETS PULSE ========== */
-.float-wa::before,.float-chat::before{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid currentColor;opacity:0;animation:widgetPulse 2.5s ease-out infinite}
-.float-wa::before{border-color:#25d366}
-.float-chat::before{border-color:#10b981}
-@keyframes widgetPulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.4);opacity:0}}
-
-/* ========== TAG HOVER ========== */
-.tag{transition:all .3s cubic-bezier(.4,0,.2,1);cursor:default}
-.tag:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.15)}
-.tag.highlight:hover{background:rgba(16,185,129,.2)}
-
-/* ========== BTN RIPPLE EFFECT ========== */
-.btn{position:relative;overflow:hidden}
-.btn::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at var(--x,50%) var(--y,50%),rgba(255,255,255,.25) 0%,transparent 60%);opacity:0;transition:opacity .3s}
-.btn:hover::after{opacity:1}
-
-/* ========== FOOTER LINK UNDERLINE ANIMATION ========== */
+/* ========== FOOTER LINK UNDERLINE ========== */
 .footer-links a{position:relative}
 .footer-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:#10b981;transition:width .3s}
 .footer-links a:hover::after{width:100%}
 
-/* ========== EDU BLOCK ITEMS REVEAL ========== */
-.edu-item{position:relative;padding-left:1rem;border-left:2px solid transparent;transition:border-color .3s,padding-left .3s}
-.edu-item:hover{border-left-color:#10b981;padding-left:1.25rem}
+/* ========== PROJECT TECH DETAIL ========== */
+.project-tech{font-size:.73rem;color:#6b7280;font-style:italic;margin-bottom:.75rem;padding:.5rem .75rem;background:#f8fafc;border-radius:8px;border-left:2px solid #10b981}
+
+/* ========== METHOD SECTION ========== */
+.method-flow{display:flex;align-items:flex-start;gap:0;margin-top:3rem;justify-content:center}
+.method-step{flex:1;max-width:260px;text-align:center;padding:0 1rem}
+.method-num{font-size:2rem;font-weight:800;color:#10b981;opacity:.3;margin-bottom:.5rem}
+.method-step h4{font-size:1rem;font-weight:700;color:#0a2e36;margin-bottom:.5rem}
+.method-step p{font-size:.82rem;color:#5a6b7d;line-height:1.6}
+.method-arrow{color:#10b981;font-size:1.5rem;font-weight:700;margin-top:1.5rem;flex-shrink:0;opacity:.4}
+@media(max-width:768px){
+  .method-flow{flex-direction:column;align-items:center;gap:1rem}
+  .method-arrow{transform:rotate(90deg);margin:0}
+}
+
+/* ========== STACK SECTION ========== */
+.stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.stack-category h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a2e36;margin-bottom:1rem}
+.stack-pills{display:flex;flex-wrap:wrap;gap:.5rem}
+.stack-pill{padding:.45rem .9rem;border-radius:8px;font-size:.78rem;font-weight:600;background:#fff;color:#0a2e36;border:1px solid #e2e8f0;transition:all .3s;cursor:default}
+.stack-pill:hover{border-color:#10b981;color:#10b981;transform:translateY(-2px);box-shadow:0 4px 12px rgba(16,185,129,.1)}
+@media(max-width:768px){.stack-grid{grid-template-columns:1fr}}
+
+/* ========== ANIMATION VISIBILITY ========== */
+.hero-badge,.hero-title span,.hero-sub,.hero-meta,.hero-ctas .btn,.profile-ring,.scroll-indicator,
+.section-label,.section-title,.section-subtitle,.about-text p,.tag,.stat-card,.timeline-item,
+.project-card,.onza-card,.speaking-content,.speaking-img,.contact-card,.contact-form,.footer-inner,
+.method-step,.method-arrow,.stack-category,.stack-pill,.speaking-bullets li,.edu-block,.cv-download,.onza-cta,.form-group,.form-submit{
+  will-change:transform,opacity
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0s !important;transition-duration:0s !important}
+}
 
 /* ========== MISC ========== */
 ::selection{background:#10b981;color:#fff}
@@ -320,7 +299,9 @@ input,textarea{font-family:inherit;border:none;outline:none}
     <a href="#" class="nav-logo">EP<span>.</span></a>
     <div class="nav-links">
       <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#method" data-i18n="nav_method">Method</a>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#stack" data-i18n="nav_stack">Stack</a>
       <a href="#onza" data-i18n="nav_onza">Onza AI</a>
       <a href="#speaking" data-i18n="nav_speaking">Speaking</a>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -333,7 +314,9 @@ input,textarea{font-family:inherit;border:none;outline:none}
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" data-i18n="nav_about">About</a>
+  <a href="#method" data-i18n="nav_method">Method</a>
   <a href="#projects" data-i18n="nav_projects">Projects</a>
+  <a href="#stack" data-i18n="nav_stack">Stack</a>
   <a href="#onza" data-i18n="nav_onza">Onza AI</a>
   <a href="#speaking" data-i18n="nav_speaking">Speaking</a>
   <a href="#contact" data-i18n="nav_contact">Contact</a>
@@ -462,6 +445,40 @@ input,textarea{font-family:inherit;border:none;outline:none}
   </div>
 </section>
 
+<!-- ====== METHOD ====== -->
+<section class="section-pad" id="method" style="background:#f1f5f9">
+  <div class="container">
+    <span class="section-label" data-i18n="method_label">Approach</span>
+    <h2 class="section-title" data-i18n="method_title">How I design AI solutions</h2>
+    <p class="section-subtitle" data-i18n="method_subtitle">Every project follows this path. No shortcuts.</p>
+    <div class="method-flow">
+      <div class="method-step">
+        <div class="method-num">01</div>
+        <h4 data-i18n="method_s1_t">Understand</h4>
+        <p data-i18n="method_s1_d">What's the actual business problem? I talk to operators, look at the data, sit in on the process. No solutioning yet.</p>
+      </div>
+      <div class="method-arrow">&rarr;</div>
+      <div class="method-step">
+        <div class="method-num">02</div>
+        <h4 data-i18n="method_s2_t">Diagnose</h4>
+        <p data-i18n="method_s2_d">Where does AI actually help vs. where a spreadsheet fix is enough? I map data sources, gaps, and integration points.</p>
+      </div>
+      <div class="method-arrow">&rarr;</div>
+      <div class="method-step">
+        <div class="method-num">03</div>
+        <h4 data-i18n="method_s3_t">Architect</h4>
+        <p data-i18n="method_s3_d">Pick the right stack. Design the pipeline. Define how it connects to ERP, BI, or messaging. Plan for what breaks.</p>
+      </div>
+      <div class="method-arrow">&rarr;</div>
+      <div class="method-step">
+        <div class="method-num">04</div>
+        <h4 data-i18n="method_s4_t">Build & ship</h4>
+        <p data-i18n="method_s4_d">Prototype fast, test with real users, iterate. Deploy to production with monitoring. I don't hand off decks, I hand off working systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====== PROJECTS ====== -->
 <section class="section-pad" id="projects" style="background:#f1f5f9">
   <div class="container">
@@ -487,6 +504,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p1_i2">SAP/ERP integration with real-time visibility</li>
             <li data-i18n="p1_i3">Improved planning accuracy and throughput</li>
           </ul>
+          <div class="project-tech" data-i18n="p1_tech">Python, SAP RFC/BAPI connectors, n8n orchestration, PostgreSQL, real-time event architecture. Handles 4 plants, ~200 daily fruit reception events.</div>
           <div class="project-tags">
             <span class="project-tag" data-i18n="p1_t1">Process Optimization</span>
             <span class="project-tag" data-i18n="p1_t2">SAP/ERP</span>
@@ -510,6 +528,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p2_i2">Automated under-processed bunch detection</li>
             <li data-i18n="p2_i3">Reduced waste and reprocessing</li>
           </ul>
+          <div class="project-tech" data-i18n="p2_tech">Roboflow for labeling, YOLOv8 fine-tuned models, Python inference pipeline, REST API serving predictions to quality dashboards. Trained on 5,000+ annotated images.</div>
           <div class="project-tags">
             <span class="project-tag" data-i18n="p2_t1">Computer Vision</span>
             <span class="project-tag" data-i18n="p2_t2">Quality Control</span>
@@ -533,6 +552,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p3_i2">Real-time delivery and quality guidance</li>
             <li data-i18n="p3_i3">Reduced call-center dependency</li>
           </ul>
+          <div class="project-tech" data-i18n="p3_tech">LLM-based RAG pipeline (OpenAI + pgvector), WhatsApp Business API via n8n, semantic chunking on agronomic docs. Serves 500+ farmers in Spanish.</div>
           <div class="project-tags">
             <span class="project-tag" data-i18n="p3_t1">Conversational AI</span>
             <span class="project-tag" data-i18n="p3_t2">LLMs</span>
@@ -556,6 +576,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p4_i2">Eliminated repetitive manual data tasks</li>
             <li data-i18n="p4_i3">Accelerated information flow</li>
           </ul>
+          <div class="project-tech" data-i18n="p4_tech">n8n self-hosted, 15+ production workflows. SAP RFC, REST APIs, Google Sheets, Telegram, email. Webhook-triggered, error-monitored, runs 24/7.</div>
           <div class="project-tags">
             <span class="project-tag" data-i18n="p4_t1">No-Code</span>
             <span class="project-tag" data-i18n="p4_t2">n8n</span>
@@ -579,6 +600,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p5_i2">Real-time supply chain monitoring</li>
             <li data-i18n="p5_i3">Data-informed leadership decisions</li>
           </ul>
+          <div class="project-tech" data-i18n="p5_tech">Looker Studio + Google Sheets backend, Python scripts for data refresh, LLM-generated narrative summaries (GPT-4), scheduled via n8n.</div>
           <div class="project-tags">
             <span class="project-tag" data-i18n="p5_t1">BI</span>
             <span class="project-tag" data-i18n="p5_t2">Data Analytics</span>
@@ -602,6 +624,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
             <li data-i18n="p6_i2">Active pipeline across Colombia and Mexico</li>
             <li data-i18n="p6_i3">End-to-end: from diagnostic to production</li>
           </ul>
+          <div class="project-tech" data-i18n="p6_tech">Python (FastAPI), React, LangChain, pgvector, n8n, Vercel. RAG systems with semantic search, conversational agents, custom dashboards.</div>
           <div class="project-tags">
             <span class="project-tag">RAG</span>
             <span class="project-tag">Python</span>
@@ -612,6 +635,56 @@ input,textarea{font-family:inherit;border:none;outline:none}
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ====== TECH STACK ====== -->
+<section class="section-pad" id="stack">
+  <div class="container">
+    <span class="section-label" data-i18n="stack_label">Tools</span>
+    <h2 class="section-title" data-i18n="stack_title">Tech stack</h2>
+    <p class="section-subtitle" data-i18n="stack_subtitle">What I use day to day.</p>
+    <div class="stack-grid">
+      <div class="stack-category">
+        <h4 data-i18n="stack_cat1">AI / ML</h4>
+        <div class="stack-pills">
+          <span class="stack-pill">OpenAI API</span>
+          <span class="stack-pill">Claude API</span>
+          <span class="stack-pill">Gemini</span>
+          <span class="stack-pill">LangChain</span>
+          <span class="stack-pill">YOLOv8</span>
+          <span class="stack-pill">Roboflow</span>
+          <span class="stack-pill">pgvector</span>
+          <span class="stack-pill">RAG</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <h4 data-i18n="stack_cat2">Development</h4>
+        <div class="stack-pills">
+          <span class="stack-pill">Python</span>
+          <span class="stack-pill">FastAPI</span>
+          <span class="stack-pill">React</span>
+          <span class="stack-pill">React Native</span>
+          <span class="stack-pill">REST APIs</span>
+          <span class="stack-pill">PostgreSQL</span>
+          <span class="stack-pill">Vercel</span>
+          <span class="stack-pill">Docker</span>
+        </div>
+      </div>
+      <div class="stack-category">
+        <h4 data-i18n="stack_cat3">Automation & BI</h4>
+        <div class="stack-pills">
+          <span class="stack-pill">n8n</span>
+          <span class="stack-pill">SAP/ERP</span>
+          <span class="stack-pill">Looker Studio</span>
+          <span class="stack-pill">Google Sheets</span>
+          <span class="stack-pill">Notion</span>
+          <span class="stack-pill">ClickUp</span>
+          <span class="stack-pill">WhatsApp API</span>
+          <span class="stack-pill">Telegram API</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -725,8 +798,9 @@ input,textarea{font-family:inherit;border:none;outline:none}
             </div>
           </a>
         </div>
-        <div class="cv-download">
-          <a href="CV Enrique Pabón 2025 ENG.pdf" download class="btn btn-primary" data-i18n="contact_cv">Download CV (PDF)</a>
+        <div class="cv-download" style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <a href="CV Enrique Pabón 2025 ENG.pdf" download class="btn btn-primary" data-i18n="contact_cv_en">CV English (PDF)</a>
+          <a href="CV_Enrique_Pabon_2026_ESP.pdf" download class="btn btn-outline" data-i18n="contact_cv_es">CV Español (PDF)</a>
         </div>
       </div>
       <form class="contact-form" action="https://formspree.io/f/mvgjaekn" method="POST">
@@ -797,7 +871,7 @@ input,textarea{font-family:inherit;border:none;outline:none}
    ============================================================ */
 const i18n = {
   en: {
-    nav_about:"About", nav_projects:"Projects", nav_onza:"Onza AI", nav_speaking:"Speaking", nav_contact:"Contact",
+    nav_about:"About", nav_method:"Method", nav_projects:"Projects", nav_stack:"Stack", nav_onza:"Onza AI", nav_speaking:"Speaking", nav_contact:"Contact",
     hero_badge:"Industrial Engineer & MBA | Founder, Onza AI",
     hero_title_1:"AI Strategy &", hero_title_2:"Digital Transformation",
     hero_sub:"I've spent 15+ years in operations across heavily regulated industries. These days, I build AI systems that actually work in production, not just in demos.",
@@ -845,8 +919,21 @@ const i18n = {
     p6_role:"Founder & Solutions Architect", p6_title:"Onza AI, my consultancy",
     p6_desc:"RAG systems, chatbots, predictive dashboards, AI-powered websites. I build these for clients across LATAM using Python, React, LLMs, and n8n.",
     p6_i1:"Four service lines: training, automation, apps, consulting", p6_i2:"Clients in Colombia and Mexico", p6_i3:"From first diagnostic to production deployment",
+    p1_tech:"Python, SAP RFC/BAPI connectors, n8n orchestration, PostgreSQL, real-time event architecture. Handles 4 plants, ~200 daily fruit reception events.",
+    p2_tech:"Roboflow for labeling, YOLOv8 fine-tuned models, Python inference pipeline, REST API serving predictions to quality dashboards. Trained on 5,000+ annotated images.",
+    p3_tech:"LLM-based RAG pipeline (OpenAI + pgvector), WhatsApp Business API via n8n, semantic chunking on agronomic docs. Serves 500+ farmers in Spanish.",
+    p4_tech:"n8n self-hosted, 15+ production workflows. SAP RFC, REST APIs, Google Sheets, Telegram, email. Webhook-triggered, error-monitored, runs 24/7.",
+    p5_tech:"Looker Studio + Google Sheets backend, Python scripts for data refresh, LLM-generated narrative summaries (GPT-4), scheduled via n8n.",
+    p6_tech:"Python (FastAPI), React, LangChain, pgvector, n8n, Vercel. RAG systems with semantic search, conversational agents, custom dashboards.",
+    method_label:"Approach", method_title:"How I design AI solutions", method_subtitle:"Every project follows this path. No shortcuts.",
+    method_s1_t:"Understand", method_s1_d:"What\u2019s the actual business problem? I talk to operators, look at the data, sit in on the process. No solutioning yet.",
+    method_s2_t:"Diagnose", method_s2_d:"Where does AI actually help vs. where a spreadsheet fix is enough? I map data sources, gaps, and integration points.",
+    method_s3_t:"Architect", method_s3_d:"Pick the right stack. Design the pipeline. Define how it connects to ERP, BI, or messaging. Plan for what breaks.",
+    method_s4_t:"Build & ship", method_s4_d:"Prototype fast, test with real users, iterate. Deploy to production with monitoring. I don\u2019t hand off decks, I hand off working systems.",
+    stack_label:"Tools", stack_title:"Tech stack", stack_subtitle:"What I use day to day.",
+    stack_cat1:"AI / ML", stack_cat2:"Development", stack_cat3:"Automation & BI",
     onza_label:"Consultancy", onza_title:"Onza AI",
-    onza_subtitle:"I started Onza AI because I kept seeing the same problem: companies want to use AI but don't know where to begin. We fix that.",
+    onza_subtitle:"In 2025 I started Onza AI. It\u2019s how I package what I\u2019ve learned into services other companies can use: training, automation, custom apps, and consulting.",
     onza_c1_title:"AI Training", onza_c1_desc:"I run workshops for executives and teams who want to understand what AI can actually do for them. I've done this for Grupo Mexico and several Colombian companies.",
     onza_c2_title:"Process Automation", onza_c2_desc:"We connect the systems you already have (ERP, logistics, messaging) so data stops living in spreadsheets and emails. Mostly using n8n and custom integrations.",
     onza_c3_title:"Custom AI Apps", onza_c3_desc:"Need a chatbot that knows your business? A dashboard that explains itself? A RAG system for your internal docs? That's what we build. Python, React, LLMs.",
@@ -864,7 +951,7 @@ const i18n = {
     edu_3:"<strong>Languages:</strong> Spanish (native) | English (C1) | Portuguese (conversational)",
     contact_label:"Contact", contact_title:"Get in touch",
     contact_subtitle:"I'm open to consulting projects, speaking gigs, or just a good conversation about AI in industry.",
-    contact_email_label:"Email", contact_cv:"Download CV (PDF)",
+    contact_email_label:"Email", contact_cv_en:"CV English (PDF)", contact_cv_es:"CV Espa\u00f1ol (PDF)",
     form_name_label:"Name", form_name_ph:"Your name",
     form_email_label:"Email", form_email_ph:"your@email.com",
     form_msg_label:"Message", form_msg_ph:"What are you working on?",
@@ -875,7 +962,7 @@ const i18n = {
     chat_input_ph:"Type a message...", chat_send:"Send"
   },
   es: {
-    nav_about:"Sobre mi", nav_projects:"Proyectos", nav_onza:"Onza AI", nav_speaking:"Charlas", nav_contact:"Contacto",
+    nav_about:"Sobre mi", nav_method:"M\u00e9todo", nav_projects:"Proyectos", nav_stack:"Stack", nav_onza:"Onza AI", nav_speaking:"Charlas", nav_contact:"Contacto",
     hero_badge:"Ingeniero Industrial & MBA | Fundador, Onza AI",
     hero_title_1:"Estrategia de IA &", hero_title_2:"Transformaci\u00f3n Digital",
     hero_sub:"Llevo m\u00e1s de 15 a\u00f1os en operaciones en industrias reguladas. Hoy construyo sistemas de IA que funcionan en producci\u00f3n, no solo en demos.",
@@ -923,8 +1010,21 @@ const i18n = {
     p6_role:"Fundador & Arquitecto de Soluciones", p6_title:"Onza AI, mi consultor\u00eda",
     p6_desc:"Sistemas RAG, chatbots, dashboards predictivos, sitios web con IA. Los construyo para clientes en LATAM con Python, React, LLMs y n8n.",
     p6_i1:"Cuatro l\u00edneas: capacitaci\u00f3n, automatizaci\u00f3n, apps, consultor\u00eda", p6_i2:"Clientes en Colombia y M\u00e9xico", p6_i3:"Del diagn\u00f3stico al despliegue en producci\u00f3n",
+    p1_tech:"Python, conectores SAP RFC/BAPI, orquestaci\u00f3n n8n, PostgreSQL, arquitectura de eventos en tiempo real. Maneja 4 plantas, ~200 recepciones diarias de fruta.",
+    p2_tech:"Roboflow para etiquetado, modelos YOLOv8 fine-tuned, pipeline de inferencia Python, API REST sirviendo predicciones a dashboards de calidad. Entrenado con 5,000+ im\u00e1genes anotadas.",
+    p3_tech:"Pipeline RAG con LLMs (OpenAI + pgvector), WhatsApp Business API v\u00eda n8n, chunking sem\u00e1ntico sobre docs agron\u00f3micos. Atiende 500+ agricultores en espa\u00f1ol.",
+    p4_tech:"n8n self-hosted, 15+ flujos en producci\u00f3n. SAP RFC, REST APIs, Google Sheets, Telegram, email. Activados por webhooks, monitoreados, corriendo 24/7.",
+    p5_tech:"Looker Studio + backend en Google Sheets, scripts Python para actualizaci\u00f3n de datos, res\u00famenes narrativos generados por LLM (GPT-4), programados v\u00eda n8n.",
+    p6_tech:"Python (FastAPI), React, LangChain, pgvector, n8n, Vercel. Sistemas RAG con b\u00fasqueda sem\u00e1ntica, agentes conversacionales, dashboards a medida.",
+    method_label:"Enfoque", method_title:"C\u00f3mo dise\u00f1o soluciones de IA", method_subtitle:"Cada proyecto sigue este camino. Sin atajos.",
+    method_s1_t:"Entender", method_s1_d:"\u00bfCu\u00e1l es el problema real del negocio? Hablo con operadores, miro los datos, me siento en el proceso. Nada de solucionar todav\u00eda.",
+    method_s2_t:"Diagnosticar", method_s2_d:"\u00bfD\u00f3nde ayuda la IA de verdad vs. d\u00f3nde basta con arreglar un Excel? Mapeo fuentes de datos, vac\u00edos y puntos de integraci\u00f3n.",
+    method_s3_t:"Arquitectura", method_s3_d:"Elegir el stack correcto. Dise\u00f1ar el pipeline. Definir c\u00f3mo se conecta al ERP, BI o mensajer\u00eda. Planear para lo que se rompe.",
+    method_s4_t:"Construir y entregar", method_s4_d:"Prototipar r\u00e1pido, probar con usuarios reales, iterar. Desplegar a producci\u00f3n con monitoreo. No entrego presentaciones, entrego sistemas funcionando.",
+    stack_label:"Herramientas", stack_title:"Stack tecnol\u00f3gico", stack_subtitle:"Lo que uso en el d\u00eda a d\u00eda.",
+    stack_cat1:"IA / ML", stack_cat2:"Desarrollo", stack_cat3:"Automatizaci\u00f3n & BI",
     onza_label:"Consultor\u00eda", onza_title:"Onza AI",
-    onza_subtitle:"Fund\u00e9 Onza AI porque segu\u00eda viendo el mismo problema: empresas que quieren usar IA pero no saben por d\u00f3nde empezar. Eso es lo que resolvemos.",
+    onza_subtitle:"En 2025 arranqu\u00e9 Onza AI. Es c\u00f3mo empaqueto lo que he aprendido en servicios que otras empresas pueden usar: capacitaci\u00f3n, automatizaci\u00f3n, apps a medida y consultor\u00eda.",
     onza_c1_title:"Capacitaci\u00f3n en IA", onza_c1_desc:"Doy talleres para ejecutivos y equipos que quieren entender qu\u00e9 puede hacer la IA por ellos de verdad. Lo he hecho para Grupo M\u00e9xico y varias empresas colombianas.",
     onza_c2_title:"Automatizaci\u00f3n de Procesos", onza_c2_desc:"Conectamos los sistemas que ya tienes (ERP, log\u00edstica, mensajer\u00eda) para que los datos dejen de vivir en hojas de c\u00e1lculo y correos. Sobre todo con n8n e integraciones a medida.",
     onza_c3_title:"Apps de IA a medida", onza_c3_desc:"\u00bfNecesitas un chatbot que conozca tu negocio? \u00bfUn dashboard que se explique solo? \u00bfUn sistema RAG para tus documentos internos? Eso es lo que hacemos. Python, React, LLMs.",
@@ -942,7 +1042,7 @@ const i18n = {
     edu_3:"<strong>Idiomas:</strong> Espa\u00f1ol (nativo) | Ingl\u00e9s (C1) | Portugu\u00e9s (conversacional)",
     contact_label:"Contacto", contact_title:"Hablemos",
     contact_subtitle:"Estoy abierto a proyectos de consultor\u00eda, charlas, o simplemente una buena conversaci\u00f3n sobre IA en la industria.",
-    contact_email_label:"Correo", contact_cv:"Descargar CV (PDF)",
+    contact_email_label:"Correo", contact_cv_en:"CV Ingl\u00e9s (PDF)", contact_cv_es:"CV Espa\u00f1ol (PDF)",
     form_name_label:"Nombre", form_name_ph:"Tu nombre",
     form_email_label:"Correo", form_email_ph:"tu@correo.com",
     form_msg_label:"Mensaje", form_msg_ph:"\u00bfEn qu\u00e9 est\u00e1s trabajando?",
@@ -1008,185 +1108,147 @@ window.addEventListener('scroll', function() {
 });
 
 /* ============================================================
-   GSAP ANIMATIONS - PREMIUM PER-SECTION
+   GSAP ANIMATIONS — SUBTLE & ELEGANT
+   All motions: small y-offsets (20-30px), pure opacity fades,
+   no rotation, no elastic, no bounce. Apple/Stripe style.
    ============================================================ */
 gsap.registerPlugin(ScrollTrigger);
+var ease = 'power2.out';
 
-// ---- HERO: cinematic text reveal + image entrance ----
-var heroTl = gsap.timeline({ defaults:{ ease:'power4.out' }});
+// ---- HERO ----
+var heroTl = gsap.timeline({ defaults:{ ease:ease }});
 heroTl
-  .from('.hero-badge', { y:40, opacity:0, duration:1, ease:'elastic.out(1,.6)' })
-  .from('.hero-title span', { y:80, opacity:0, duration:1.1, stagger:.2, ease:'power4.out' }, '-=.6')
-  .from('.hero-sub', { y:30, opacity:0, duration:.8, ease:'power3.out' }, '-=.6')
-  .from('.hero-meta', { y:20, opacity:0, duration:.6 }, '-=.5')
-  .from('.hero-ctas .btn', { y:25, opacity:0, duration:.6, stagger:.12, ease:'back.out(1.4)' }, '-=.4')
-  .from('.profile-ring', { scale:.6, opacity:0, rotation:-10, duration:1.3, ease:'elastic.out(1,.5)' }, '-=1.2')
-  .from('.scroll-indicator', { opacity:0, y:-15, duration:.8 }, '-=.3');
+  .from('.hero-badge', { y:15, opacity:0, duration:.8 })
+  .from('.hero-title span', { y:25, opacity:0, duration:.9, stagger:.12 }, '-=.5')
+  .from('.hero-sub', { y:15, opacity:0, duration:.8 }, '-=.5')
+  .from('.hero-meta', { y:10, opacity:0, duration:.6 }, '-=.4')
+  .from('.hero-ctas .btn', { y:10, opacity:0, duration:.6, stagger:.08 }, '-=.3')
+  .from('.profile-ring', { scale:.92, opacity:0, duration:1 }, '-=.9')
+  .from('.scroll-indicator', { opacity:0, duration:.8 }, '-=.3');
 
-// ---- SECTION HEADERS: label slides in, title clips up, subtitle fades ----
+// ---- SECTION HEADERS ----
 gsap.utils.toArray('.section-label').forEach(function(el) {
-  gsap.from(el, { x:-30, opacity:0, duration:.6, ease:'power3.out',
+  gsap.from(el, { opacity:0, x:-10, duration:.6, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 88%' }
   });
 });
 gsap.utils.toArray('.section-title').forEach(function(el) {
-  gsap.from(el, { y:50, opacity:0, duration:.9, ease:'power4.out',
+  gsap.from(el, { y:20, opacity:0, duration:.7, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 88%' }
   });
 });
 gsap.utils.toArray('.section-subtitle').forEach(function(el) {
-  gsap.from(el, { y:25, opacity:0, duration:.7, delay:.15, ease:'power3.out',
+  gsap.from(el, { y:12, opacity:0, duration:.6, delay:.1, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 90%' }
   });
 });
 
-// ---- ABOUT: paragraphs stagger up, tags pop in, sidebar flies in ----
+// ---- ABOUT ----
 gsap.utils.toArray('.about-text p').forEach(function(el, i) {
-  gsap.from(el, { y:40, opacity:0, duration:.8, delay:i*.15, ease:'power3.out',
+  gsap.from(el, { y:18, opacity:0, duration:.7, delay:i*.08, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 90%' }
   });
 });
-
 gsap.utils.toArray('.tag').forEach(function(el, i) {
-  gsap.from(el, { scale:0, opacity:0, duration:.5, delay:i*.04, ease:'back.out(2)',
+  gsap.from(el, { opacity:0, duration:.4, delay:i*.03, ease:ease,
     scrollTrigger:{ trigger:'.tags-wrap', start:'top 90%' }
   });
 });
-
-// Stats: cards flip in + counter animation
 gsap.utils.toArray('.stat-card').forEach(function(el, i) {
-  gsap.from(el, { rotationY:90, opacity:0, duration:.8, delay:i*.12, ease:'power3.out',
-    scrollTrigger:{ trigger:'.stats-grid', start:'top 88%' },
-    transformPerspective:800
+  gsap.from(el, { y:20, opacity:0, duration:.6, delay:i*.08, ease:ease,
+    scrollTrigger:{ trigger:'.stats-grid', start:'top 88%' }
   });
 });
-
 document.querySelectorAll('.counter').forEach(function(c) {
   var target = +c.getAttribute('data-target');
   ScrollTrigger.create({
-    trigger: c, start:'top 90%',
-    onEnter: function() {
-      gsap.to(c, {
-        duration: target > 100 ? 2.5 : 1.5,
-        innerText: target,
-        snap:{ innerText:1 },
-        ease:'power2.out'
-      });
+    trigger:c, start:'top 90%',
+    onEnter:function() {
+      gsap.to(c, { duration:target > 100 ? 2 : 1.2, innerText:target, snap:{innerText:1}, ease:'power2.out' });
     }, once:true
   });
 });
-
-// Timeline: line reveals + items stagger from left with dot pulse
 var tl = document.querySelector('.timeline');
-if (tl) {
-  ScrollTrigger.create({
-    trigger: tl, start:'top 85%',
-    onEnter: function() { tl.classList.add('revealed'); }
-  });
-}
+if (tl) { ScrollTrigger.create({ trigger:tl, start:'top 85%', onEnter:function(){ tl.classList.add('revealed'); } }); }
 gsap.utils.toArray('.timeline-item').forEach(function(el, i) {
-  gsap.from(el, { x:-50, opacity:0, duration:.7, delay:i*.12, ease:'power3.out',
+  gsap.from(el, { x:-15, opacity:0, duration:.5, delay:i*.06, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 92%' }
   });
 });
 
-// ---- PROJECTS: cards rise with rotation + stagger per row ----
+// ---- METHOD ----
+gsap.utils.toArray('.method-step').forEach(function(el, i) {
+  gsap.from(el, { y:20, opacity:0, duration:.6, delay:i*.12, ease:ease,
+    scrollTrigger:{ trigger:'.method-flow', start:'top 85%' }
+  });
+});
+gsap.utils.toArray('.method-arrow').forEach(function(el, i) {
+  gsap.from(el, { opacity:0, duration:.4, delay:.05 + i*.12, ease:ease,
+    scrollTrigger:{ trigger:'.method-flow', start:'top 85%' }
+  });
+});
+
+// ---- PROJECTS ----
 gsap.utils.toArray('.project-card').forEach(function(el, i) {
-  gsap.from(el, {
-    y:80, opacity:0, rotationX:8, duration:.9,
-    delay:(i % 3)*.15,
-    ease:'power3.out',
-    transformPerspective:1000,
+  gsap.from(el, { y:30, opacity:0, duration:.7, delay:(i%3)*.08, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 92%' }
   });
 });
 
-// Project images: parallax inside card on scroll
-gsap.utils.toArray('.project-img-wrap img').forEach(function(img) {
-  gsap.fromTo(img, { y:'-10%' }, {
-    y:'10%', ease:'none',
-    scrollTrigger:{ trigger:img.closest('.project-card'), start:'top bottom', end:'bottom top', scrub:true }
+// ---- STACK ----
+gsap.utils.toArray('.stack-category').forEach(function(cat, i) {
+  gsap.from(cat, { y:18, opacity:0, duration:.6, delay:i*.1, ease:ease,
+    scrollTrigger:{ trigger:cat, start:'top 90%' }
   });
 });
 
-// ---- ONZA AI: cards scale with rotation + glow ----
+// ---- ONZA AI ----
 gsap.utils.toArray('.onza-card').forEach(function(el, i) {
-  gsap.from(el, {
-    scale:.7, opacity:0, rotation:-3, duration:.9,
-    delay:i*.13, ease:'elastic.out(1,.6)',
+  gsap.from(el, { y:25, opacity:0, duration:.6, delay:i*.08, ease:ease,
     scrollTrigger:{ trigger:el, start:'top 90%' }
   });
 });
-
-// Onza CTA button
-gsap.from('.onza-cta', { y:30, opacity:0, duration:.7, ease:'power3.out',
+gsap.from('.onza-cta', { y:15, opacity:0, duration:.5, ease:ease,
   scrollTrigger:{ trigger:'.onza-cta', start:'top 92%' }
 });
 
-// ---- SPEAKING: content slides from left, image zooms from right with tilt ----
-var speakingTl = gsap.timeline({
-  scrollTrigger:{ trigger:'.speaking-grid', start:'top 80%' }
+// ---- SPEAKING ----
+gsap.from('.speaking-content', { y:25, opacity:0, duration:.8, ease:ease,
+  scrollTrigger:{ trigger:'.speaking-grid', start:'top 82%' }
 });
-speakingTl
-  .from('.speaking-content', { x:-60, opacity:0, duration:1, ease:'power3.out' })
-  .from('.speaking-bullets li', { x:-30, opacity:0, duration:.5, stagger:.12, ease:'power3.out' }, '-=.5')
-  .from('.edu-block', { y:30, opacity:0, duration:.7, ease:'power3.out' }, '-=.3');
-
-gsap.from('.speaking-img', { x:80, opacity:0, rotation:3, duration:1.2, ease:'power3.out',
-  scrollTrigger:{ trigger:'.speaking-grid', start:'top 80%' }
+gsap.from('.speaking-img', { y:25, opacity:0, duration:.8, delay:.1, ease:ease,
+  scrollTrigger:{ trigger:'.speaking-grid', start:'top 82%' }
 });
 
-// Speaking image parallax tilt on scroll
-gsap.to('.speaking-img', {
-  rotation:-2, y:-20, ease:'none',
-  scrollTrigger:{ trigger:'.speaking-grid', start:'top bottom', end:'bottom top', scrub:true }
-});
-
-// ---- CONTACT: cards cascade in + form slides up ----
+// ---- CONTACT ----
 gsap.utils.toArray('.contact-card').forEach(function(el, i) {
-  gsap.from(el, { x:-50, opacity:0, rotation:-2, duration:.6, delay:i*.1, ease:'power3.out',
+  gsap.from(el, { y:15, opacity:0, duration:.5, delay:i*.06, ease:ease,
     scrollTrigger:{ trigger:'.contact-grid', start:'top 85%' }
   });
 });
-
-gsap.from('.cv-download', { y:20, opacity:0, duration:.6, delay:.4, ease:'power3.out',
+gsap.from('.cv-download', { y:12, opacity:0, duration:.5, delay:.25, ease:ease,
   scrollTrigger:{ trigger:'.contact-grid', start:'top 85%' }
 });
-
-var formTl = gsap.timeline({
+gsap.from('.contact-form', { y:25, opacity:0, duration:.7, ease:ease,
   scrollTrigger:{ trigger:'.contact-form', start:'top 88%' }
 });
-formTl
-  .from('.contact-form', { y:50, opacity:0, duration:.8, ease:'power3.out' })
-  .from('.form-group', { y:25, opacity:0, duration:.5, stagger:.1, ease:'power3.out' }, '-=.4')
-  .from('.form-submit', { y:20, opacity:0, scale:.95, duration:.5, ease:'back.out(1.4)' }, '-=.2');
 
-// ---- FOOTER: fade up ----
-gsap.from('.footer-inner', { y:20, opacity:0, duration:.6, ease:'power3.out',
+// ---- FOOTER ----
+gsap.from('.footer-inner', { y:10, opacity:0, duration:.5, ease:ease,
   scrollTrigger:{ trigger:'.footer', start:'top 95%' }
 });
 
-// ---- NAV: active link highlight on scroll ----
-var sections = document.querySelectorAll('section[id], .section-pad[id]');
-sections.forEach(function(sec) {
+// ---- NAV: active section highlight ----
+document.querySelectorAll('section[id], .section-pad[id]').forEach(function(sec) {
   ScrollTrigger.create({
-    trigger: sec, start:'top 40%', end:'bottom 40%',
-    onToggle: function(self) {
+    trigger:sec, start:'top 40%', end:'bottom 40%',
+    onToggle:function(self) {
       if (self.isActive) {
         document.querySelectorAll('.nav-links a[href^="#"]').forEach(function(a) {
           a.style.color = a.getAttribute('href') === '#' + sec.id ? '#10b981' : '';
         });
       }
     }
-  });
-});
-
-// ---- BUTTON RIPPLE: track mouse position for radial effect ----
-document.querySelectorAll('.btn').forEach(function(btn) {
-  btn.addEventListener('mousemove', function(e) {
-    var rect = btn.getBoundingClientRect();
-    btn.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
-    btn.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
   });
 });
 
