@@ -1265,33 +1265,7 @@ var chatMessages = document.getElementById('chatMessages');
 chatToggle.addEventListener('click', function() { chatPanel.classList.toggle('open'); });
 chatClose.addEventListener('click', function() { chatPanel.classList.remove('open'); });
 
-var CV_CONTEXT = 'You are the AI assistant for Enrique Pabon Ramirez\'s portfolio website. Answer questions about him based on this context:\n\n' +
-'PERSONAL: Enrique Pabon Ramirez, based in Barranquilla, Colombia. Email: enriquepabonramirez@gmail.com. Phone: +57 314 206 4795. LinkedIn: linkedin.com/in/enriquepabon.\n\n' +
-'EDUCATION: MBA from EAE Business School, Madrid (2015). Industrial Engineering from Universidad de los Andes, Bogota (2010). Languages: Spanish (Native), English (C1), Portuguese (Conversational).\n\n' +
-'CURRENT ROLES:\n' +
-'- Founder & AI Strategy Director at Onza AI (2025-Present): Boutique AI consultancy serving companies in Colombia and LATAM. 4 service lines: AI Training, Process Automation, Custom AI Applications, Strategic Consulting. Active pipeline across Colombia and Mexico.\n' +
-'- Director of Agroindustrial Development at Oleoflores (2024-Present): Leading AI transformation across 4 palm oil extraction plants.\n\n' +
-'CAREER HISTORY:\n' +
-'- 2023-2025: Business Development Manager at Medcann Pharma\n' +
-'- 2022-2023: General Manager Colombia at YVY Life Sciences\n' +
-'- 2020-2022: Operations Manager at YVY Life Sciences, Uruguay\n' +
-'- 2018-2020: Supply Chain Director at Avicanna Inc.\n' +
-'- 2015-2017: Financial Controller Plant at Owens-Illinois (O-I)\n' +
-'- 2011-2014: Project Manager Manufacturing at General Motors\n\n' +
-'KEY PROJECTS AT OLEOFLORES:\n' +
-'1. Smart-flow AI: AI system orchestrating fruit and process flows across 4 extraction plants, integrated with SAP/ERP.\n' +
-'2. Computer Vision for Fruit Quality: CV models to classify palm fruit quality and detect under-processed bunches.\n' +
-'3. WhatsApp Advisory Agents: AI agents supporting 500+ farmers with logistics and quality guidance.\n' +
-'4. No-code Automation with n8n: 15+ automated workflows connecting SAP, logistics, messaging, reporting.\n' +
-'5. AI-augmented BI Dashboards: Interactive dashboards with AI-generated insights for leadership.\n\n' +
-'ONZA AI SERVICES: AI Training (delivered for Grupo Mexico), Process Automation (n8n, custom integrations), Custom AI Applications (RAG, conversational agents, dashboards, websites using Python, React, LLMs), Strategic Consulting (AI roadmaps, use case evaluation, change management).\n\n' +
-'EXPERTISE: AI & Data Strategy, Supply Chain Ops, Regulated Industries, Computer Vision, LLMs & GenAI, RAG Systems, Agentic AI, No-Code Automation, Governance & Ethics, Training & Speaking.\n\n' +
-'SPEAKING: 5+ webinars delivered to corporate audiences in Mexico (Grupo Mexico) and Colombia on AI adoption, responsible AI, and practical AI use cases.\n\n' +
-'STATS: 15+ years experience, 6+ industries, 500+ farmers reached, 5+ AI webinars.\n\n' +
-'Keep answers concise, professional, and helpful. If asked something not covered here, politely say you can only answer about Enrique\'s professional background. Answer in the same language as the question.';
-
-var GEMINI_KEY = 'AIzaSyCg7cqRZ8QzPq4G3peD0gw9qPQPNSsCBdw';
-var GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY;
+// Chatbot calls /api/chat serverless function (API key stays server-side)
 var chatHistory = [];
 
 function addMessage(text, type) {
@@ -1326,37 +1300,24 @@ async function sendChat() {
   chatHistory.push({ role:'user', parts:[{ text: text }] });
 
   try {
-    var res = await fetch(GEMINI_URL, {
+    var res = await fetch('/api/chat', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        systemInstruction: { parts:[{ text: CV_CONTEXT }] },
-        contents: chatHistory,
-        generationConfig:{ maxOutputTokens:500, temperature:0.7 }
-      })
+      body: JSON.stringify({ message: text, history: chatHistory.slice(0, -1) })
     });
     var data = await res.json();
     hideTyping();
 
-    if (data.error) {
-      console.error('Gemini API error:', data.error);
+    if (!res.ok || data.error) {
+      console.error('Chat API error:', data.error || res.status);
       addMessage('Sorry, there was an error. Please try again.', 'bot');
       chatHistory.pop();
       return;
     }
 
-    var reply = '';
-    try { reply = data.candidates[0].content.parts[0].text; } catch(e) { reply = ''; }
-
-    if (!reply) {
-      addMessage('Sorry, I could not process that. Try rephrasing your question.', 'bot');
-      chatHistory.pop();
-      return;
-    }
-
-    chatHistory.push({ role:'model', parts:[{ text: reply }] });
+    chatHistory.push({ role:'model', parts:[{ text: data.reply }] });
     if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
-    addMessage(reply, 'bot');
+    addMessage(data.reply, 'bot');
   } catch(e) {
     hideTyping();
     console.error('Chat fetch error:', e);
