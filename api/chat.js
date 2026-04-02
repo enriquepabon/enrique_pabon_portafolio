@@ -1,6 +1,27 @@
+// Simple rate limiter: max 10 requests per IP per 60 seconds
+const rateMap = new Map();
+const RATE_LIMIT = 10;
+const RATE_WINDOW = 60 * 1000;
+
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const entry = rateMap.get(ip);
+  if (!entry || now - entry.start > RATE_WINDOW) {
+    rateMap.set(ip, { start: now, count: 1 });
+    return true;
+  }
+  entry.count++;
+  return entry.count <= RATE_LIMIT;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const ip = req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || 'unknown';
+  if (!checkRateLimit(ip)) {
+    return res.status(429).json({ error: 'Too many requests. Please wait a minute.' });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
@@ -10,8 +31,8 @@ export default async function handler(req, res) {
 
   try {
     const { message, history } = req.body;
-    if (!message) {
-      return res.status(400).json({ error: 'Message is required' });
+    if (!message || typeof message !== 'string' || message.length > 1000) {
+      return res.status(400).json({ error: 'Invalid message' });
     }
 
     const systemContext = `You are the AI assistant for Enrique Pabon Ramirez's portfolio website. Answer questions about him based on this context:

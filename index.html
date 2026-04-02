@@ -1065,9 +1065,11 @@ function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('ep_lang', lang);
   const t = i18n[lang];
+  var htmlKeys = {speaking_b1:1,speaking_b2:1,speaking_b3:1,edu_1:1,edu_2:1,edu_3:1};
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) el.innerHTML = t[key];
+    if (t[key] === undefined) return;
+    if (htmlKeys[key]) { el.innerHTML = t[key]; } else { el.textContent = t[key]; }
   });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
     var key = el.getAttribute('data-i18n-placeholder');
